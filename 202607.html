@@ -4746,6 +4746,20 @@ function thinkGoTo(idx) {
 </script>
 
 <script>
+function openLGeniePopup() {
+  var overlay = document.getElementById('lgenieOverlay');
+  var popup = document.getElementById('lgeniePopup');
+  if (!overlay || !popup) return;
+  overlay.style.display = 'block';
+  popup.style.display = 'block';
+  requestAnimationFrame(function() {
+    popup.style.opacity = '1';
+    popup.style.transform = 'translate(-50%,-50%) scale(1)';
+  });
+  document.body.style.overflow = 'hidden';
+}
+</script>
+<script>
 function toggleThinkCard(idx) {
   var wrap = document.getElementById('think-expand-' + idx);
   var btn = document.getElementById('think-btn-' + idx);
