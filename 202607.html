@@ -1737,6 +1737,62 @@
   .think-expand-wrap { margin-bottom: 4px; }
   .think-quote-full { -webkit-line-clamp: unset !important; }
 
+
+  /* ── 기이수자 카드 슬라이더 ── */
+  .think-slider-wrap {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    margin-bottom: 14px;
+  }
+  .think-slider-track {
+    display: flex;
+    transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+  }
+  .think-slider-track .think-card {
+    min-width: 100%;
+    flex-shrink: 0;
+  }
+  .think-slider-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+    gap: 10px;
+  }
+  .think-slider-btn {
+    background: var(--surface, #fff);
+    border: 1.5px solid var(--border, #e5e7eb);
+    border-radius: 8px;
+    width: 36px; height: 36px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; cursor: pointer;
+    transition: all 0.15s; flex-shrink: 0;
+    color: var(--text, #1a1a1a);
+  }
+  .think-slider-btn:hover { background: var(--lg-red, #A50034); color: #fff; border-color: var(--lg-red, #A50034); }
+  .think-slider-dots {
+    display: flex; gap: 6px; align-items: center; flex-wrap: wrap; justify-content: center;
+  }
+  .think-slider-dot {
+    width: 28px; height: 28px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700; cursor: pointer;
+    border: 2px solid var(--border, #e5e7eb);
+    background: var(--surface, #fff);
+    color: var(--text-muted, #9ca3af);
+    transition: all 0.15s;
+  }
+  .think-slider-dot.active {
+    background: var(--lg-red, #A50034);
+    border-color: var(--lg-red, #A50034);
+    color: #fff;
+  }
+  .think-slider-counter {
+    font-size: 13px; color: var(--text-muted, #9ca3af);
+    font-weight: 600; white-space: nowrap;
+  }
+
   /* ── 기이수자 인사이트 ── */
   .insight-intro {
     font-size: 16px; color: var(--text-muted); line-height: 1.75;
@@ -2904,7 +2960,8 @@
             <div class="think-outro-note">📎 위 발췌는 '26년 1차수(4월)·2차수(5월) 기이수자들의 현장 디브리프 발언에서 추출한 것입니다.</div>
           </div>
 
-          <div class="think-cards-grid">
+          <div class="think-slider-wrap">
+            <div class="think-slider-track" id="thinkTrack">
           <!-- A -->
           <div class="think-card">
             <div class="think-card-head" style="background:#A50034;">
@@ -3059,7 +3116,23 @@
               <div class="insight-row-tags" style="margin-top:8px;"><span class="insight-tag">🎯 게임의 룰</span><span class="insight-tag">Xpeng-중청로봇</span><span class="insight-tag">잠재성 투자</span></div>
             </div>
           </div>
-          </div><!-- think-cards-grid -->
+            </div><!-- think-slider-track -->
+          </div><!-- think-slider-wrap -->
+
+          <!-- 슬라이더 네비게이션 -->
+          <div class="think-slider-nav">
+            <button class="think-slider-btn" onclick="thinkSlide(-1)">←</button>
+            <div class="think-slider-dots" id="thinkDots">
+              <div class="think-slider-dot active" onclick="thinkGoTo(0)">A</div>
+              <div class="think-slider-dot" onclick="thinkGoTo(1)">B</div>
+              <div class="think-slider-dot" onclick="thinkGoTo(2)">C</div>
+              <div class="think-slider-dot" onclick="thinkGoTo(3)">D</div>
+              <div class="think-slider-dot" onclick="thinkGoTo(4)">E</div>
+              <div class="think-slider-dot" onclick="thinkGoTo(5)">F</div>
+              <div class="think-slider-dot" onclick="thinkGoTo(6)">G</div>
+            </div>
+            <button class="think-slider-btn" onclick="thinkSlide(1)">→</button>
+          </div>
 
           <!-- 공통으로 나온 말 -->
           <div class="think-intro-box" style="margin-top:16px;">
@@ -4631,6 +4704,45 @@ window.switchSubTab = function(idx) {
   document.querySelectorAll('.weather-sub-tab').forEach(function(t,i){ t.classList.toggle('active', i===idx); });
   document.querySelectorAll('.weather-sub-panel').forEach(function(p,i){ p.style.display = i===idx ? 'block' : 'none'; });
 };
+</script>
+
+<script>
+// 기이수자 카드 슬라이더
+var thinkCurrent = 0;
+var thinkTotal = 7;
+
+function thinkUpdateUI() {
+  var track = document.getElementById('thinkTrack');
+  if (!track) return;
+  track.style.transform = 'translateX(-' + (thinkCurrent * 100) + '%)';
+  var dots = document.querySelectorAll('.think-slider-dot');
+  dots.forEach(function(d, i) { d.classList.toggle('active', i === thinkCurrent); });
+}
+
+function thinkSlide(dir) {
+  thinkCurrent = (thinkCurrent + dir + thinkTotal) % thinkTotal;
+  thinkUpdateUI();
+}
+
+function thinkGoTo(idx) {
+  thinkCurrent = idx;
+  thinkUpdateUI();
+}
+
+// 터치 스와이프
+(function() {
+  var startX = 0;
+  document.addEventListener('touchstart', function(e) {
+    var track = document.getElementById('thinkTrack');
+    if (track && track.contains(e.target)) startX = e.touches[0].clientX;
+  }, { passive: true });
+  document.addEventListener('touchend', function(e) {
+    var track = document.getElementById('thinkTrack');
+    if (!track || !track.contains(e.target)) return;
+    var dx = e.changedTouches[0].clientX - startX;
+    if (Math.abs(dx) > 40) thinkSlide(dx < 0 ? 1 : -1);
+  }, { passive: true });
+})();
 </script>
 
 <script>
