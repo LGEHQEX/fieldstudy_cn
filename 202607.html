@@ -1662,7 +1662,7 @@
   .think-notice.amber { background: #fffbeb; border-color: #f59e0b; color: #78350f; }
   .think-cards-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
     gap: 14px;
     margin-bottom: 14px;
   }
@@ -1722,6 +1722,20 @@
     font-size: 13px; color: var(--text-muted);
     margin-top: 10px; line-height: 1.6;
   }
+
+  .think-quote-summary { -webkit-line-clamp: unset; }
+  .think-expand-btn {
+    display: inline-flex; align-items: center; gap: 4px;
+    margin-top: 8px; padding: 5px 12px;
+    font-size: 13px; font-weight: 600;
+    color: var(--lg-red); background: var(--lg-red-light, #fff0f3);
+    border: 1px solid var(--lg-red); border-radius: 20px;
+    cursor: pointer; transition: all 0.15s;
+    font-family: 'Noto Sans KR', sans-serif;
+  }
+  .think-expand-btn:hover { background: var(--lg-red); color: #fff; }
+  .think-expand-wrap { margin-bottom: 4px; }
+  .think-quote-full { -webkit-line-clamp: unset !important; }
 
   /* ── 기이수자 인사이트 ── */
   .insight-intro {
@@ -2831,15 +2845,18 @@
               </div>
             </div>
             <div class="think-card-body">
-              <blockquote class="think-quote">"리모컨 하나에 우리는 3천원, 중국 메이저는 1,500원, 부품업체 출고가는 82원짜리도 있더라고요. 우리가 지금 잘 모르는 경쟁자와 싸우고 있는 거 아니냐는 걸 크게 느꼈고, 그 뒤로 원가 갭이 50%였던 게 거의 5% 이내로 줄어들더라고요."</blockquote>
-              <div class="think-q-box">
-                <div class="think-q-label">💡 가기 전 생각해볼 질문</div>
-                <div class="think-q-text">본인 사업부에서 중국 동급 제품의 진짜 원가 구조를 마지막으로 본 게 언제입니까? 화창베이·징동전기 현장에서 직접 가격표를 보고 와서, 50% → 5%의 갭을 만들 수 있는 동기부여 포인트 1개를 정해 오십시오.</div>
+              <blockquote class="think-quote think-quote-summary">"우리가 지금 잘 모르는 경쟁자와 싸우고 있는 거 아니냐는 걸 크게 느꼈습니다."</blockquote>
+              <div class="think-expand-wrap" id="think-expand-a" style="display:none;">
+                <blockquote class="think-quote think-quote-full">"리모컨 하나에 우리는 3천원, 중국 메이저는 1,500원, 부품업체 출고가는 82원짜리도 있더라고요. '안에 아무것도 안 들은 거 아니야?' 했는데 진짜 단순합니다. 바람 세기·온도 그 정도면 충분합니다. 우리가 지금 잘 모르는 경쟁자와 싸우고 있는 거 아니냐는 걸 크게 느꼈고, 그 뒤로 1~2년 동기부여를 했더니 원가 갭이 50%였던 게 거의 5% 이내로 줄어들더라고요. 협력사 RND가 300명이라는 것도 그때 알았습니다."</blockquote>
+                <div class="think-q-box">
+                  <div class="think-q-label">💡 가기 전 생각해볼 질문</div>
+                  <div class="think-q-text">'우리는 어떤 경쟁자와 싸우고 있다고 생각해 왔습니까?' 본인 사업부에서 중국 동급 제품의 진짜 원가 구조를 마지막으로 본 게 언제입니까? 화창베이·징동전기 현장에서 직접 가격표를 보고 와서, 50% → 5%의 갭을 만들 수 있는 동기부여 포인트 1개를 정해 오십시오.</div>
+                </div>
               </div>
-              <div class="insight-row-tags"><span class="insight-tag">⚡ RND 속도</span><span class="insight-tag">원가 구조</span><span class="insight-tag">협력사 RND</span></div>
+              <button class="think-expand-btn" onclick="toggleThinkCard('a')" id="think-btn-a">전체 코멘트 보기 ▾</button>
+              <div class="insight-row-tags" style="margin-top:8px;"><span class="insight-tag">⚡ RND 속도</span><span class="insight-tag">원가 구조</span><span class="insight-tag">협력사 RND</span></div>
             </div>
           </div>
-
           <!-- B -->
           <div class="think-card">
             <div class="think-card-head" style="background:#2a5298;">
@@ -2850,15 +2867,18 @@
               </div>
             </div>
             <div class="think-card-body">
-              <blockquote class="think-quote">"심천은 서울에서 반나절 거리, 시차도 1시간입니다. 한국에서 할 수 없는 도전·실험은 여기에 주고, 우리는 아이덴티티와 유니크함을 발전시키는 — 그렇게 돌아가는 시스템을 잘 구축하면 좋겠다는 그림입니다."</blockquote>
-              <div class="think-q-box">
-                <div class="think-q-label">💡 가기 전 생각해볼 질문</div>
-                <div class="think-q-text">'우리는 무엇을 직접 만들고, 무엇을 심천 생태계에 맡길 것입니까?' 화창베이·중청로봇 방문에서 — 우리 사업부의 '내재화 우선 1개'와 '심천에 즉시 위탁 가능 1개'를 각각 정리해 오십시오.</div>
+              <blockquote class="think-quote think-quote-summary">"우리 핵심 기술은 유지하되, 빠른 실행과 저가 제조를 받는 생태계를 우리도 가져야 합니다."</blockquote>
+              <div class="think-expand-wrap" id="think-expand-b" style="display:none;">
+                <blockquote class="think-quote think-quote-full">"심천은 서울에서 반나절 거리, 시차도 1시간입니다. 빠른 실행이 가능하고 실패에도 어느 정도 용인되며 규제도 풀려있는 곳입니다. 한국에서 할 수 없는 도전·실험은 여기에 주고, 우리는 아이덴티티와 유니크함을 발전시키는 — 그렇게 돌아가는 시스템을 잘 구축하면 좋겠다는 그림입니다. 우리 핵심 기술은 유지하되, 스펙을 주고 이쪽에서 빠른 실행과 저가 제조를 받는 생태계를 우리도 가져야 합니다."</blockquote>
+                <div class="think-q-box">
+                  <div class="think-q-label">💡 가기 전 생각해볼 질문</div>
+                  <div class="think-q-text">'우리는 무엇을 직접 만들고, 무엇을 심천 생태계에 맡길 것입니까?' 화창베이·중청로봇 방문에서 — 우리 사업부의 '내재화 우선 1개'와 '심천에 즉시 위탁 가능 1개'를 각각 정리해 오십시오.</div>
+                </div>
               </div>
-              <div class="insight-row-tags"><span class="insight-tag">🌐 생태계</span><span class="insight-tag">ECM</span><span class="insight-tag">개발 분업</span></div>
+              <button class="think-expand-btn" onclick="toggleThinkCard('b')" id="think-btn-b">전체 코멘트 보기 ▾</button>
+              <div class="insight-row-tags" style="margin-top:8px;"><span class="insight-tag">🌐 생태계</span><span class="insight-tag">ECM</span><span class="insight-tag">개발 분업</span></div>
             </div>
           </div>
-
           <!-- C -->
           <div class="think-card">
             <div class="think-card-head" style="background:#c17f24;">
@@ -2869,15 +2889,18 @@
               </div>
             </div>
             <div class="think-card-body">
-              <blockquote class="think-quote">"로봇이 시연 중에 넘어지는 걸 보고 — 우리는 사색이 됩니다. 근데 그쪽 엔지니어들은 '당연한 거 아니냐'는 표정이에요. 우리는 99.99999점을 받을 때까지 개발하다가 내잖아요. 여기는 출시하고 난 다음에 완성을 해 나갑니다."</blockquote>
-              <div class="think-q-box">
-                <div class="think-q-label">💡 가기 전 생각해볼 질문</div>
-                <div class="think-q-text">본인이 마지막으로 팀원의 실패를 '당연한 것'으로 받아준 경험은 언제입니까? 중청로봇 시연 현장에서 그들의 '실패에 대한 표정'을 직접 보고 오십시오.</div>
+              <blockquote class="think-quote think-quote-summary">"우리는 99.99999점이 될 때까지 개발하다 내잖아요. 여기는 출시하고 난 다음에 완성해 나갑니다."</blockquote>
+              <div class="think-expand-wrap" id="think-expand-c" style="display:none;">
+                <blockquote class="think-quote think-quote-full">"로봇이 시연 중에 넘어지는 걸 보고 — 우리는 사색이 됩니다. 근데 그쪽 엔지니어들은 '당연한 거 아니냐'는 표정이에요. 우리는 출시할 때 99.99999점을 받을 때까지 개발하다가 내잖아요. 여기는 출시하고 난 다음에 완성을 해 나갑니다. 우리가 '업가전'을 하고 있는데, 그게 바로 이 — 출시 후 완성도를 올리는 방식이어야 합니다."</blockquote>
+                <div class="think-q-box">
+                  <div class="think-q-label">💡 가기 전 생각해볼 질문</div>
+                  <div class="think-q-text">'실패는 성공의 필요충분 조건'이라는 말은 이론적으로는 알고 있습니다. 본인이 마지막으로 팀원의 실패를 '당연한 것'으로 받아준 경험은 언제입니까? 중청로봇 시연 현장에서 그들의 '실패에 대한 표정'을 직접 보고 오십시오.</div>
+                </div>
               </div>
-              <div class="insight-row-tags"><span class="insight-tag">🔁 실패 재정의</span><span class="insight-tag">출시 후 완성</span><span class="insight-tag">업가전</span></div>
+              <button class="think-expand-btn" onclick="toggleThinkCard('c')" id="think-btn-c">전체 코멘트 보기 ▾</button>
+              <div class="insight-row-tags" style="margin-top:8px;"><span class="insight-tag">🔁 실패 재정의</span><span class="insight-tag">출시 후 완성</span><span class="insight-tag">업가전</span></div>
             </div>
           </div>
-
           <!-- D -->
           <div class="think-card">
             <div class="think-card-head" style="background:#1a1a2e;">
@@ -2888,15 +2911,18 @@
               </div>
             </div>
             <div class="think-card-body">
-              <blockquote class="think-quote">"LG전자가 상당한 역량을 갖고 있지만 꿈이 작습니다. 실제로 그 꿈을 얘기하는 것 자체를 두려워해요. BYD가 '지구 온도 1도 낮추기'를 모토로 걸고 정부 정책이 거기 맞춰 움직이는 걸 보고 무서움을 느꼈습니다. 꿈이 작으면 그만큼밖에 못 합니다."</blockquote>
-              <div class="think-q-box">
-                <div class="think-q-label">💡 가기 전 생각해볼 질문</div>
-                <div class="think-q-text">본인의 사업부가 5년 뒤 '세계 1등'이 되는 그림 — 그 첫 문장을 한국에 두고 가십시오. BYD 역사관에서 그들의 '1도 낮추기'와 비교해 보십시오. 우리 사업부의 꿈은 비아냥받을 만큼 큽니까, 아니면 안전해서 작습니까?</div>
+              <blockquote class="think-quote think-quote-summary">"꿈이 작습니다. 실제로 그 꿈을 얘기하는 것 자체를 두려워해요. 꿈이 작으면 그만큼밖에 못 합니다."</blockquote>
+              <div class="think-expand-wrap" id="think-expand-d" style="display:none;">
+                <blockquote class="think-quote think-quote-full">"LG전자가 상당한 역량을 갖고 있지만 제가 회사에 16년 만에 돌아와서 보니, 첫 번째는 꿈이 작습니다. 실제로 그 꿈을 얘기하는 것 자체를 두려워해요. 사원들이 비아냥거릴까봐. 머스크가 우주선을 쏴서 다시 돌아오게 한다는 게 처음엔 되게 웃겼잖아요. 근데 해내지 않습니까. BYD가 '지구 온도 1도 낮추기'를 모토로 걸고 정부 정책이 거기 맞춰 움직이는 걸 보고 무서움을 느꼈습니다. 꿈이 작으면 그만큼밖에 못 합니다."</blockquote>
+                <div class="think-q-box">
+                  <div class="think-q-label">💡 가기 전 생각해볼 질문</div>
+                  <div class="think-q-text">본인의 사업부가 5년 뒤 '세계 1등'이 되는 그림 — 그 첫 문장을 한국에 두고 가십시오. 그리고 BYD 역사관에서 그들의 '1도 낮추기'와 비교해 보십시오. 우리 사업부의 꿈은 비아냥받을 만큼 큽니까, 아니면 안전해서 작습니까?</div>
+                </div>
               </div>
-              <div class="insight-row-tags"><span class="insight-tag">🚀 꿈의 크기</span><span class="insight-tag">BYD</span><span class="insight-tag">비전 선포</span></div>
+              <button class="think-expand-btn" onclick="toggleThinkCard('d')" id="think-btn-d">전체 코멘트 보기 ▾</button>
+              <div class="insight-row-tags" style="margin-top:8px;"><span class="insight-tag">🚀 꿈의 크기</span><span class="insight-tag">BYD</span><span class="insight-tag">비전 선포</span></div>
             </div>
           </div>
-
           <!-- E -->
           <div class="think-card">
             <div class="think-card-head" style="background:#2d6a4f;">
@@ -2907,15 +2933,18 @@
               </div>
             </div>
             <div class="think-card-body">
-              <blockquote class="think-quote">"인재는 비용이 아니고 자본이다. 화웨이는 약 40조를 인재 투자에 쓰고, BYD는 매년 5만 명을 채용하고, 35~40세에는 스핀오프해 자기 사업을 할 수 있는 기회까지 — 도시 자체가 '치열한 자기 발전'에 익숙합니다."</blockquote>
-              <div class="think-q-box">
-                <div class="think-q-label">💡 가기 전 생각해볼 질문</div>
-                <div class="think-q-text">본인은 평소 인재를 P&L의 비용으로 봅니까, B/S의 자본으로 봅니까? '중국의 젊은 천재가 우리 LG를 선택하지 않는 이유'를 1개 발견해 오십시오.</div>
+              <blockquote class="think-quote think-quote-summary">"인재는 비용이 아니고 자본이다. 도시 자체가 '치열한 자기 발전'에 익숙합니다."</blockquote>
+              <div class="think-expand-wrap" id="think-expand-e" style="display:none;">
+                <blockquote class="think-quote think-quote-full">"교수님께서 '인재는 비용이 아니고 자본이다'라는 말씀을 하셨는데, 인재 가치는 밀도·인력 효율·인센티브 적합도로 측정된다고 합니다. 상위 20%가 하위 20%의 8.3배 가치를 창출합니다. 화웨이는 약 40조를 인재 투자에 쓰고, BYD는 매년 5만 명을 채용하고, 텐센트는 3~4인 팀으로 실패를 용인하며 빠르게 갑니다. 35~40세에는 스핀오프해 자기 사업을 할 수 있는 기회까지 — 도시 자체가 '치열한 자기 발전'에 익숙합니다."</blockquote>
+                <div class="think-q-box">
+                  <div class="think-q-label">💡 가기 전 생각해볼 질문</div>
+                  <div class="think-q-text">'인건비를 마치 고정비 취급하는 우리의 습관' — 본인은 평소 인재를 P&L의 비용으로 봅니까, B/S의 자본으로 봅니까? '중국의 젊은 천재가 우리 LG를 선택하지 않는 이유'를 1개 발견해 오십시오.</div>
+                </div>
               </div>
-              <div class="insight-row-tags"><span class="insight-tag">👥 인재 = 자본</span><span class="insight-tag">B/S 자본</span><span class="insight-tag">스핀오프</span></div>
+              <button class="think-expand-btn" onclick="toggleThinkCard('e')" id="think-btn-e">전체 코멘트 보기 ▾</button>
+              <div class="insight-row-tags" style="margin-top:8px;"><span class="insight-tag">👥 인재 = 자본</span><span class="insight-tag">B/S 자본</span><span class="insight-tag">스핀오프</span></div>
             </div>
           </div>
-
           <!-- F -->
           <div class="think-card">
             <div class="think-card-head" style="background:#6b21a8;">
@@ -2926,16 +2955,18 @@
               </div>
             </div>
             <div class="think-card-body">
-              <blockquote class="think-quote">"AI 싸움은 데이터 싸움인데, 한국은 데이터 하나 모으는 것도 난리가 납니다. 옵티머스는 미국에서 사람을 시간당 6만 5천원씩 주면서 피지컬 AI를 학습시킵니다. 중국은 5천원이 안 됩니다. 누가 더 학습을 많이 할 것인가에 대한 고민이 큽니다."</blockquote>
-              <div class="think-q-box">
-                <div class="think-q-label">💡 가기 전 생각해볼 질문</div>
-                <div class="think-q-text">'우리는 전 세계에 깔린 디바이스의 데이터를 ThinQ를 통해 제대로 활용하고 있습니까?' 무인택시·드론배달 현장에서 '데이터가 곧 인프라'가 된 모습을 직접 확인하십시오.</div>
+              <blockquote class="think-quote think-quote-summary">"AI 싸움은 데이터 싸움인데, 한국은 데이터 하나 모으는 것도 난리가 납니다."</blockquote>
+              <div class="think-expand-wrap" id="think-expand-f" style="display:none;">
+                <blockquote class="think-quote think-quote-full">"옵티머스는 미국에서 사람을 시간당 6만 5천원씩 주면서 피지컬 AI를 학습시킵니다. 중국은 5천원이 안 됩니다. 미국은 AI 신뢰도가 34%, 중국은 72%. 중국은 신뢰 여부와 상관없이 데이터를 가져갑니다. 동의한 적 없어도 국가가 동의를 받아놨거든요. 결국 AI 싸움은 데이터 싸움인데, 한국은 데이터 하나 모으는 것도 난리가 납니다. 누가 더 학습을 많이 할 것인가에 대한 고민이 큽니다."</blockquote>
+                <div class="think-q-box">
+                  <div class="think-q-label">💡 가기 전 생각해볼 질문</div>
+                  <div class="think-q-text">'우리는 전 세계에 깔린 디바이스의 데이터를 ThinQ를 통해 제대로 활용하고 있습니까?' 데이터를 모을 수 없는 환경에서 LG가 갈 길은 무엇입니까 — 자체 데이터 수집인가, 글로벌 적합형 AI 솔루션인가? 무인택시·드론배달 현장에서 '데이터가 곧 인프라'가 된 모습을 직접 확인하십시오.</div>
+                </div>
               </div>
-              <div class="insight-row-tags"><span class="insight-tag">🤖 AI·데이터</span><span class="insight-tag">피지컬 AI</span><span class="insight-tag">ThinQ</span></div>
+              <button class="think-expand-btn" onclick="toggleThinkCard('f')" id="think-btn-f">전체 코멘트 보기 ▾</button>
+              <div class="insight-row-tags" style="margin-top:8px;"><span class="insight-tag">🤖 AI·데이터</span><span class="insight-tag">피지컬 AI</span><span class="insight-tag">ThinQ</span></div>
             </div>
           </div>
-
-
           <!-- G -->
           <div class="think-card">
             <div class="think-card-head" style="background:#1e3a5f;">
@@ -2946,15 +2977,18 @@
               </div>
             </div>
             <div class="think-card-body">
-              <blockquote class="think-quote">"중청로봇 봤을 때 '저거 거의 하드웨어 회사인데 피지컬 AI 되려면 머리가 똑똑해야 되는데' 걱정했어요. 근데 검색해 보니 CEO가 샤오펑 출신이고, 샤오펑이 뒤에서 전주 역할을 해주고 있더라고요. 지금은 그냥 폴짝폴짝 뛰는 로봇이지만, 곧 자율주행이 닿게 됩니다. 진짜 무서워지겠다 — 우리도 다음 스텝의 잠재성을 보고 투자하는 방식을 배워야 합니다."</blockquote>
-              <div class="think-q-box">
-                <div class="think-q-label">💡 가기 전 생각해볼 질문</div>
-                <div class="think-q-text">샤오펑(Xpeng) 현장에서 — '하드웨어 회사가 어느 시점에 플랫폼 회사로 도약했는가'의 단서를 1개 찾아오십시오. 게임의 룰을 따라가는 회사가 될지, 룰을 만드는 회사가 될지의 선택은 '큰 결정'이 아니라 '작은 투자'에서 시작됩니다.</div>
+              <blockquote class="think-quote think-quote-summary">"지금은 폴짝폴짝 뛰는 로봇이지만, 곧 자율주행이 닿게 됩니다. 진짜 무서워지겠다."</blockquote>
+              <div class="think-expand-wrap" id="think-expand-g" style="display:none;">
+                <blockquote class="think-quote think-quote-full">"중청로봇 봤을 때 '저거 거의 하드웨어 회사인데 피지컬 AI 되려면 머리가 똑똑해야 되는데' 걱정했어요. 근데 검색해 보니 CEO가 샤오펑 출신이고, 샤오펑이 뒤에서 전주 역할을 해주고 있더라고요. 최근엔 샤오펑이 자율주행 최고 책임자를 이쪽으로 옮겼어요. 지금은 그냥 폴짝폴짝 뛰는 로봇이지만, 곧 자율주행이 닿게 됩니다. 진짜 무서워지겠다 — 우리도 다음 스텝의 잠재성을 보고 투자하는 방식을 배워야 합니다."</blockquote>
+                <div class="think-q-box">
+                  <div class="think-q-label">💡 가기 전 생각해볼 질문</div>
+                  <div class="think-q-text">샤오펑(Xpeng) 현장에서 — '하드웨어 회사가 어느 시점에 플랫폼 회사로 도약했는가'의 단서를 1개 찾아오십시오. 게임의 룰을 따라가는 회사가 될지, 룰을 만드는 회사가 될지의 선택은 '큰 결정'이 아니라 '작은 투자'에서 시작됩니다.</div>
+                </div>
               </div>
-              <div class="insight-row-tags"><span class="insight-tag">🎯 게임의 룰</span><span class="insight-tag">Xpeng-중청로봇</span><span class="insight-tag">잠재성 투자</span></div>
+              <button class="think-expand-btn" onclick="toggleThinkCard('g')" id="think-btn-g">전체 코멘트 보기 ▾</button>
+              <div class="insight-row-tags" style="margin-top:8px;"><span class="insight-tag">🎯 게임의 룰</span><span class="insight-tag">Xpeng-중청로봇</span><span class="insight-tag">잠재성 투자</span></div>
             </div>
           </div>
-
           </div><!-- think-cards-grid -->
 
           <!-- 공통으로 나온 말 -->
@@ -3205,7 +3239,6 @@
 </div>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-function openLGeniePopup() {
   var overlay = document.getElementById('lgenieOverlay');
   var popup = document.getElementById('lgeniePopup');
   overlay.style.display = 'block';
@@ -4761,5 +4794,15 @@ window.switchSubTab = function(idx) {
 };
 </script>
 
+<script>
+function toggleThinkCard(idx) {
+  var wrap = document.getElementById('think-expand-' + idx);
+  var btn = document.getElementById('think-btn-' + idx);
+  if (!wrap || !btn) return;
+  var isOpen = wrap.style.display === 'block';
+  wrap.style.display = isOpen ? 'none' : 'block';
+  btn.textContent = isOpen ? '전체 코멘트 보기 ▾' : '접기 ▴';
+}
+</script>
 </body>
 </html>
