@@ -1738,59 +1738,60 @@
   .think-quote-full { -webkit-line-clamp: unset !important; }
 
 
-  /* ── 기이수자 카드 슬라이더 ── */
-  .think-slider-wrap {
-    position: relative;
-    overflow: hidden;
-    border-radius: 12px;
-    margin-bottom: 14px;
-  }
-  .think-slider-track {
-    display: flex;
-    transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
-  }
-  .think-slider-track .think-card {
-    min-width: 100%;
-    flex-shrink: 0;
-  }
-  .think-slider-nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 10px;
-    gap: 10px;
-  }
-  .think-slider-btn {
+  /* ── 기이수자 매거진 카드 ── */
+  .mag-card-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 14px; }
+  .mag-card {
+    display: grid; grid-template-columns: 5px 1fr;
     background: var(--surface, #fff);
-    border: 1.5px solid var(--border, #e5e7eb);
-    border-radius: 8px;
-    width: 36px; height: 36px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 16px; cursor: pointer;
-    transition: all 0.15s; flex-shrink: 0;
+    border: 1px solid var(--border, #e5e7eb);
+    border-radius: 12px; overflow: hidden;
+  }
+  .mag-accent { width: 5px; }
+  .mag-body { padding: 14px 16px; }
+  .mag-theme {
+    font-size: 11px; font-weight: 700; letter-spacing: 1px;
+    color: var(--text-muted, #6b7280);
+    text-transform: uppercase; margin-bottom: 7px;
+  }
+  .mag-headline {
+    font-size: 16px; font-weight: 700;
     color: var(--text, #1a1a1a);
+    line-height: 1.5; margin-bottom: 10px;
+    font-style: italic;
   }
-  .think-slider-btn:hover { background: var(--lg-red, #A50034); color: #fff; border-color: var(--lg-red, #A50034); }
-  .think-slider-dots {
-    display: flex; gap: 6px; align-items: center; flex-wrap: wrap; justify-content: center;
+  .mag-expand-wrap { margin-bottom: 10px; }
+  .mag-full-quote {
+    font-size: 14px; color: var(--text-muted, #4b5563);
+    line-height: 1.75; border-left: 3px solid #A50034;
+    padding-left: 12px; margin-bottom: 10px;
+    font-style: italic;
   }
-  .think-slider-dot {
-    width: 28px; height: 28px; border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 12px; font-weight: 700; cursor: pointer;
-    border: 2px solid var(--border, #e5e7eb);
-    background: var(--surface, #fff);
-    color: var(--text-muted, #9ca3af);
-    transition: all 0.15s;
+  .mag-q-box {
+    background: var(--surface2, #f9fafb);
+    border-radius: 8px; padding: 12px 14px; margin-bottom: 4px;
   }
-  .think-slider-dot.active {
-    background: var(--lg-red, #A50034);
-    border-color: var(--lg-red, #A50034);
-    color: #fff;
+  .mag-q-label { font-size: 12px; font-weight: 700; color: #A50034; margin-bottom: 5px; }
+  .mag-q-text { font-size: 13px; color: var(--text-muted, #4b5563); line-height: 1.7; }
+  .mag-footer {
+    display: flex; align-items: center; gap: 8px; margin-bottom: 8px;
   }
-  .think-slider-counter {
-    font-size: 13px; color: var(--text-muted, #9ca3af);
-    font-weight: 600; white-space: nowrap;
+  .mag-av {
+    width: 24px; height: 24px; border-radius: 50%;
+    color: #fff; display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 700; flex-shrink: 0;
+  }
+  .mag-meta-text { font-size: 12px; color: var(--text-muted, #6b7280); flex: 1; }
+  .mag-more-btn {
+    font-size: 12px; font-weight: 600; color: #A50034;
+    border: 1px solid #A50034; background: none;
+    border-radius: 20px; padding: 3px 11px; cursor: pointer;
+    white-space: nowrap; transition: all 0.15s;
+  }
+  .mag-more-btn:hover { background: #A50034; color: #fff; }
+  .mag-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+  .mag-tag {
+    font-size: 11px; background: #fff0f3; color: #A50034;
+    border: 0.5px solid #f9c6d2; padding: 2px 9px; border-radius: 20px;
   }
 
   /* ── 기이수자 인사이트 ── */
@@ -1950,7 +1951,7 @@
     display: flex; align-items: center; justify-content: center;
     font-size: 16px;
   }
-  .dm-memo-textarea {
+  .dm-memo-textarea, .dm-memo {
     width: 100%; min-height: 90px;
     background: #fafafa; border: 1.5px solid var(--border);
     border-radius: 10px; padding: 11px 13px;
@@ -1958,8 +1959,8 @@
     resize: vertical; font-family: 'Noto Sans KR', sans-serif;
     outline: none; transition: border-color 0.15s; box-sizing: border-box;
   }
-  .dm-memo-textarea::placeholder { color: #b0b8c1; }
-  .dm-memo-textarea:focus { border-color: var(--lg-red); background: #fff; }
+  .dm-memo-textarea::placeholder, .dm-memo::placeholder { color: #b0b8c1; }
+  .dm-memo-textarea:focus, .dm-memo:focus { border-color: var(--lg-red); background: #fff; }
   .dm-memo-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 6px; }
   .dm-memo-saved { font-size: 15px; color: #16a34a; opacity: 0; transition: opacity 0.3s; }
   .dm-memo-saved.show { opacity: 1; }
@@ -2199,8 +2200,8 @@
     <div class="nav-tab" id="ntab-mac-6" onclick="navTabClick('mac-6')"><span class="nav-tab-icon">🗓</span>과정 여정</div>
     <div class="nav-tab" id="ntab-mac-0" onclick="navTabClick('mac-0')"><span class="nav-tab-icon">📋</span>출발 전 체크리스트</div>
     <div class="nav-tab" id="ntab-mac-2" onclick="navTabClick('mac-2')"><span class="nav-tab-icon">🏢</span>교육 일정</div>
-    <div class="nav-tab" id="ntab-mac-5" onclick="navTabClick('mac-5')"><span class="nav-tab-icon">💡</span>가기 전 생각할 거리</div>
     <div class="nav-tab" id="ntab-mac-4" onclick="navTabClick('mac-4')"><span class="nav-tab-icon">✅</span>현장 미션</div>
+    <div class="nav-tab" id="ntab-mac-5" onclick="navTabClick('mac-5')"><span class="nav-tab-icon">💡</span>가기 전 생각할 거리</div>
     <div class="nav-tab" id="ntab-mac-3" onclick="openSurveyDrawer()"><span class="nav-tab-icon">📝</span>사전 Survey</div>
   </div>
 
@@ -2861,6 +2862,69 @@
         
     </div>
 
+    <!-- ⑤ 관찰 미션 체크리스트 -->
+    <div class="main-accord-item open" id="mac-4">
+      <button class="main-accord-trigger" onclick="toggleMAC('mac-4')">
+        <div class="mat-icon-wrap">✅</div>
+        <div class="mat-texts">
+          <div class="mat-title">관찰 미션 체크리스트</div>
+          <div class="mat-sub">현장 확인 항목 10개</div>
+        </div>
+        <span class="mat-chevron">▼</span>
+      </button>
+      <div class="main-accord-body">
+        <div style="padding:0 24px 8px;">
+          <!-- ── 관찰 미션 체크리스트 ── -->
+  <div class="section" style="padding-top:8px;">
+          <div class="cl-intro" style="margin-bottom:10px;">각 방문지에서 관찰 미션(팩트 확인)과 통찰 미션(LG 연결 사고)을 수행합니다.</div>
+          <!-- 관찰미션 진행률 바 -->
+          <div class="progress-wrap" style="padding:14px 0 10px;background:transparent;border-bottom:none;margin-bottom:4px;">
+            <div class="progress-header">
+              <span class="progress-title">🎯 관찰 미션 진행률</span>
+              <span class="progress-fraction" id="cl-prog-frac">0 / 9</span>
+            </div>
+            <div class="progress-bar-bg">
+              <div class="progress-bar-fill" id="cl-prog-bar" style="width:0%"></div>
+            </div>
+            <div class="progress-sub" id="cl-prog-sub">체크박스를 클릭하여 완료 여부를 기록하세요.</div>
+          </div>
+
+    <div class="cl-tab-bar" id="clTabBar" style="display:none;">
+      <button class="cl-tab-btn d1 active" onclick="switchClTab(0)">DAY 1</button>
+      <button class="cl-tab-btn d2" onclick="switchClTab(1)">DAY 2</button>
+      <button class="cl-tab-btn d3" onclick="switchClTab(2)">DAY 3</button>
+    </div>
+
+    <div class="cl-group">
+      <div class="cl-day-bar cl-d1">DAY 1 · 7/1 (수)</div>
+      <div class="cl-items">
+        <div class="cl-item" id="cl-1" style="-webkit-user-select:none;user-select:none;cursor:default;"><div class="cl-cb" id="cl-cb-1">✓</div><div class="cl-text"><span class="cl-num">#1</span><span class="cl-venue">중청로봇</span>'공급망 활용으로 6개월 내 신모델'이 가능한 EngineAI의 R&D 조직과 비교 — <strong>우리 R&D가 같은 속도를 내려면 무엇 1개를 버려야 하는가</strong> (조직? 검증 절차? 자체 부품 고집?)</div><button class="cl-detail-btn" onclick="event.stopPropagation();openDM(1)">상세 미션 ↗</button></div>
+      </div>
+    </div>
+
+    <div class="cl-group">
+      <div class="cl-day-bar cl-d2">DAY 2 · 7/2 (목)</div>
+      <div class="cl-items">
+        <div class="cl-item" id="cl-2" style="-webkit-user-select:none;user-select:none;cursor:default;"><div class="cl-cb" id="cl-cb-2">✓</div><div class="cl-text"><span class="cl-num">#2</span><span class="cl-venue">BYD</span>30년 타임라인 中 <strong>결정적 turning point 3개</strong>를 역사관에서 메모, 지금의 BYD를 만든 핵심 요소를 한 단어로 정의</div><button class="cl-detail-btn" onclick="event.stopPropagation();openDM(2)">상세 미션 ↗</button></div>
+        <div class="cl-item" id="cl-3" style="-webkit-user-select:none;user-select:none;cursor:default;"><div class="cl-cb" id="cl-cb-3">✓</div><div class="cl-text"><span class="cl-num">#3</span><span class="cl-venue">무인택시</span>탑승 후 <strong>기존 택시와 다른 점</strong>을 승차 편의성·안전 체감 관점에서 기록</div><button class="cl-detail-btn" onclick="event.stopPropagation();openDM(3)">상세 미션 ↗</button></div>
+        <div class="cl-item" id="cl-4" style="-webkit-user-select:none;user-select:none;cursor:default;"><div class="cl-cb" id="cl-cb-4">✓</div><div class="cl-text"><span class="cl-num">#4</span><span class="cl-venue">드론 배달</span>드론 받는 15분 중 — <strong>LG의 어떤 사업이 가장 먼저 위협받고, 어떤 사업이 기회를 얻는가</strong> 직무 관점에서 각 1개</div><button class="cl-detail-btn" onclick="event.stopPropagation();openDM(4)">상세 미션 ↗</button></div>
+        <div class="cl-item" id="cl-5" style="-webkit-user-select:none;user-select:none;cursor:default;"><div class="cl-cb" id="cl-cb-5">✓</div><div class="cl-text"><span class="cl-num">#5</span><span class="cl-venue">NIO House</span>배터리 탈착 결정 — <strong>본인이 NIO 임원이라면 어떻게 결정했을지와 그 이유</strong> 정리</div><button class="cl-detail-btn" onclick="event.stopPropagation();openDM(5)">상세 미션 ↗</button></div>
+        <div class="cl-item" id="cl-6" style="-webkit-user-select:none;user-select:none;cursor:default;"><div class="cl-cb" id="cl-cb-6">✓</div><div class="cl-text"><span class="cl-num">#6</span><span class="cl-venue">Upper Hills</span>한국 동급 차량 대비 <strong>'한 수 위인 점' 1개와 '아직 못한 점' 1개</strong>를 의도적으로 모두 찾기</div><button class="cl-detail-btn" onclick="event.stopPropagation();openDM(6)">상세 미션 ↗</button></div>
+      </div>
+    </div>
+
+    <div class="cl-group">
+      <div class="cl-day-bar cl-d3">DAY 3 · 7/3 (금)</div>
+      <div class="cl-items">
+        <div class="cl-item" id="cl-7" style="-webkit-user-select:none;user-select:none;cursor:default;"><div class="cl-cb" id="cl-cb-7">✓</div><div class="cl-text"><span class="cl-num">#7</span><span class="cl-venue">징동전기</span>우리 제품/기술과 Hisense·TCL·Midea 동급 제품 가격을 사진으로 기록 — <strong>가격차가 가장 큰 제품·가장 작은 제품은?</strong> 그 차이가 '품질 차이'로 정당화되는지 눈으로 검증</div><button class="cl-detail-btn" onclick="event.stopPropagation();openDM(7)">상세 미션 ↗</button></div>
+        <div class="cl-item" id="cl-8" style="-webkit-user-select:none;user-select:none;cursor:default;"><div class="cl-cb" id="cl-cb-8">✓</div><div class="cl-text"><span class="cl-num">#8</span><span class="cl-venue">화창베이</span>부품 1개를 미리 정해 와서 <strong>가격·납기·MOQ를 직접 묻기</strong> (통역 동행) — 그 자리에서 즉답: '조달 전략을 바꿀 것인가, 유지할 것인가'</div><button class="cl-detail-btn" onclick="event.stopPropagation();openDM(8)">상세 미션 ↗</button></div>
+        <div class="cl-item" id="cl-9" style="-webkit-user-select:none;user-select:none;cursor:default;"><div class="cl-cb" id="cl-cb-9">✓</div><div class="cl-text"><span class="cl-num">#9</span><span class="cl-venue">Xpeng</span>AeroHT 분리형 비행 기체 관찰 — <strong>10년 뒤 '집(Home)'의 구조와 가전 배치(Layout)</strong>는 어떻게 바뀌어야 하는가</div><button class="cl-detail-btn" onclick="event.stopPropagation();openDM(9)">상세 미션 ↗</button></div>
+      </div>
+    </div>
+  </div>
+        </div>
+      </div>
+    </div>
     <div class="main-accord-item open" id="mac-5">
       <button class="main-accord-trigger" onclick="toggleMAC('mac-5')">
         <div class="mat-icon-wrap">💡</div>
@@ -2960,178 +3024,147 @@
             <div class="think-outro-note">📎 위 발췌는 '26년 1차수(4월)·2차수(5월) 기이수자들의 현장 디브리프 발언에서 추출한 것입니다.</div>
           </div>
 
-          <div class="think-slider-wrap">
-            <div class="think-slider-track" id="thinkTrack">
-          <!-- A -->
-          <div class="think-card">
-            <div class="think-card-head" style="background:#A50034;">
-              <div class="think-av">A</div>
-              <div>
-                <div class="think-card-title">기이수자 코멘트 — RND·의사결정 속도</div>
-                <div class="think-card-sub">'26년 현장 디브리프 발췌</div>
-              </div>
-            </div>
-            <div class="think-card-body">
-              <blockquote class="think-quote think-quote-summary">"우리가 지금 잘 모르는 경쟁자와 싸우고 있는 거 아니냐는 걸 크게 느꼈습니다."</blockquote>
-              <div class="think-expand-wrap" id="think-expand-a" style="display:none;">
-                <blockquote class="think-quote think-quote-full">"리모컨 하나에 우리는 3천원, 중국 메이저는 1,500원, 부품업체 출고가는 82원짜리도 있더라고요. '안에 아무것도 안 들은 거 아니야?' 했는데 진짜 단순합니다. 바람 세기·온도 그 정도면 충분합니다. 우리가 지금 잘 모르는 경쟁자와 싸우고 있는 거 아니냐는 걸 크게 느꼈고, 그 뒤로 1~2년 동기부여를 했더니 원가 갭이 50%였던 게 거의 5% 이내로 줄어들더라고요. 협력사 RND가 300명이라는 것도 그때 알았습니다."</blockquote>
-                <div class="think-q-box">
-                  <div class="think-q-label">💡 가기 전 생각해볼 질문</div>
-                  <div class="think-q-text">'우리는 어떤 경쟁자와 싸우고 있다고 생각해 왔습니까?' 본인 사업부에서 중국 동급 제품의 진짜 원가 구조를 마지막으로 본 게 언제입니까? 화창베이·징동전기 현장에서 직접 가격표를 보고 와서, 50% → 5%의 갭을 만들 수 있는 동기부여 포인트 1개를 정해 오십시오.</div>
+          <div class="mag-card-list">
+          <div class="mag-card">
+            <div class="mag-accent" style="background:#A50034;"></div>
+            <div class="mag-body">
+              <div class="mag-theme">⚡ RND·의사결정 속도</div>
+              <div class="mag-headline">"원가 갭이 50%였던 게 거의 5% 이내로 줄어들더라고요."</div>
+              <div class="mag-expand-wrap" id="think-expand-a" style="display:none;">
+                <blockquote class="mag-full-quote">"리모컨 하나에 우리는 3천원, 중국 메이저는 1,500원, 부품업체 출고가는 82원짜리도 있더라고요. 우리가 지금 잘 모르는 경쟁자와 싸우고 있는 거 아니냐는 걸 크게 느꼈고, 그 뒤로 1~2년 동기부여를 했더니 원가 갭이 50%였던 게 거의 5% 이내로 줄어들더라고요. 협력사 RND가 300명이라는 것도 그때 알았습니다."</blockquote>
+                <div class="mag-q-box">
+                  <div class="mag-q-label">💡 가기 전 생각해볼 질문</div>
+                  <div class="mag-q-text">'우리는 어떤 경쟁자와 싸우고 있다고 생각해 왔습니까?' 본인 사업부에서 중국 동급 제품의 진짜 원가 구조를 마지막으로 본 게 언제입니까? 화창베이·징동전기 현장에서 직접 가격표를 보고 와서, 50% → 5%의 갭을 만들 수 있는 동기부여 포인트 1개를 정해 오십시오.</div>
                 </div>
               </div>
-              <button class="think-expand-btn" onclick="toggleThinkCard('a')" id="think-btn-a">전체 코멘트 보기 ▾</button>
-              <div class="insight-row-tags" style="margin-top:8px;"><span class="insight-tag">⚡ RND 속도</span><span class="insight-tag">원가 구조</span><span class="insight-tag">협력사 RND</span></div>
+              <div class="mag-footer">
+                <div class="mag-av" style="background:#A50034;">A</div>
+                <div class="mag-meta-text">기이수자 코멘트 · '26년 디브리프</div>
+                <button class="mag-more-btn" id="think-btn-a" onclick="toggleThinkCard('a')">전체 보기 ▾</button>
+              </div>
+              <div class="mag-tags"><span class="mag-tag">⚡ RND 속도</span><span class="mag-tag">원가 구조</span><span class="mag-tag">협력사 RND</span></div>
             </div>
           </div>
-          <!-- B -->
-          <div class="think-card">
-            <div class="think-card-head" style="background:#2a5298;">
-              <div class="think-av">B</div>
-              <div>
-                <div class="think-card-title">기이수자 코멘트 — 생태계 활용</div>
-                <div class="think-card-sub">'26년 현장 디브리프 발췌</div>
-              </div>
-            </div>
-            <div class="think-card-body">
-              <blockquote class="think-quote think-quote-summary">"우리 핵심 기술은 유지하되, 빠른 실행과 저가 제조를 받는 생태계를 우리도 가져야 합니다."</blockquote>
-              <div class="think-expand-wrap" id="think-expand-b" style="display:none;">
-                <blockquote class="think-quote think-quote-full">"심천은 서울에서 반나절 거리, 시차도 1시간입니다. 빠른 실행이 가능하고 실패에도 어느 정도 용인되며 규제도 풀려있는 곳입니다. 한국에서 할 수 없는 도전·실험은 여기에 주고, 우리는 아이덴티티와 유니크함을 발전시키는 — 그렇게 돌아가는 시스템을 잘 구축하면 좋겠다는 그림입니다. 우리 핵심 기술은 유지하되, 스펙을 주고 이쪽에서 빠른 실행과 저가 제조를 받는 생태계를 우리도 가져야 합니다."</blockquote>
-                <div class="think-q-box">
-                  <div class="think-q-label">💡 가기 전 생각해볼 질문</div>
-                  <div class="think-q-text">'우리는 무엇을 직접 만들고, 무엇을 심천 생태계에 맡길 것입니까?' 화창베이·중청로봇 방문에서 — 우리 사업부의 '내재화 우선 1개'와 '심천에 즉시 위탁 가능 1개'를 각각 정리해 오십시오.</div>
+          <div class="mag-card">
+            <div class="mag-accent" style="background:#2a5298;"></div>
+            <div class="mag-body">
+              <div class="mag-theme">🌐 생태계 활용</div>
+              <div class="mag-headline">"핵심 기술은 유지하되, 빠른 실행과 저가 제조를 받는 생태계를 우리도 가져야 합니다."</div>
+              <div class="mag-expand-wrap" id="think-expand-b" style="display:none;">
+                <blockquote class="mag-full-quote">"심천은 서울에서 반나절 거리, 시차도 1시간입니다. 빠른 실행이 가능하고 실패에도 어느 정도 용인되며 규제도 풀려있는 곳입니다. 한국에서 할 수 없는 도전·실험은 여기에 주고, 우리는 아이덴티티와 유니크함을 발전시키는 — 그렇게 돌아가는 시스템을 잘 구축하면 좋겠다는 그림입니다. 우리 핵심 기술은 유지하되, 스펙을 주고 이쪽에서 빠른 실행과 저가 제조를 받는 생태계를 우리도 가져야 합니다."</blockquote>
+                <div class="mag-q-box">
+                  <div class="mag-q-label">💡 가기 전 생각해볼 질문</div>
+                  <div class="mag-q-text">'우리는 무엇을 직접 만들고, 무엇을 심천 생태계에 맡길 것입니까?' 화창베이·중청로봇 방문에서 — 우리 사업부의 '내재화 우선 1개'와 '심천에 즉시 위탁 가능 1개'를 각각 정리해 오십시오.</div>
                 </div>
               </div>
-              <button class="think-expand-btn" onclick="toggleThinkCard('b')" id="think-btn-b">전체 코멘트 보기 ▾</button>
-              <div class="insight-row-tags" style="margin-top:8px;"><span class="insight-tag">🌐 생태계</span><span class="insight-tag">ECM</span><span class="insight-tag">개발 분업</span></div>
+              <div class="mag-footer">
+                <div class="mag-av" style="background:#2a5298;">B</div>
+                <div class="mag-meta-text">기이수자 코멘트 · '26년 디브리프</div>
+                <button class="mag-more-btn" id="think-btn-b" onclick="toggleThinkCard('b')">전체 보기 ▾</button>
+              </div>
+              <div class="mag-tags"><span class="mag-tag">🌐 생태계</span><span class="mag-tag">ECM</span><span class="mag-tag">개발 분업</span></div>
             </div>
           </div>
-          <!-- C -->
-          <div class="think-card">
-            <div class="think-card-head" style="background:#c17f24;">
-              <div class="think-av">C</div>
-              <div>
-                <div class="think-card-title">기이수자 코멘트 — 실패 재정의</div>
-                <div class="think-card-sub">'26년 현장 디브리프 발췌</div>
-              </div>
-            </div>
-            <div class="think-card-body">
-              <blockquote class="think-quote think-quote-summary">"우리는 99.99999점이 될 때까지 개발하다 내잖아요. 여기는 출시하고 난 다음에 완성해 나갑니다."</blockquote>
-              <div class="think-expand-wrap" id="think-expand-c" style="display:none;">
-                <blockquote class="think-quote think-quote-full">"로봇이 시연 중에 넘어지는 걸 보고 — 우리는 사색이 됩니다. 근데 그쪽 엔지니어들은 '당연한 거 아니냐'는 표정이에요. 우리는 출시할 때 99.99999점을 받을 때까지 개발하다가 내잖아요. 여기는 출시하고 난 다음에 완성을 해 나갑니다. 우리가 '업가전'을 하고 있는데, 그게 바로 이 — 출시 후 완성도를 올리는 방식이어야 합니다."</blockquote>
-                <div class="think-q-box">
-                  <div class="think-q-label">💡 가기 전 생각해볼 질문</div>
-                  <div class="think-q-text">'실패는 성공의 필요충분 조건'이라는 말은 이론적으로는 알고 있습니다. 본인이 마지막으로 팀원의 실패를 '당연한 것'으로 받아준 경험은 언제입니까? 중청로봇 시연 현장에서 그들의 '실패에 대한 표정'을 직접 보고 오십시오.</div>
+          <div class="mag-card">
+            <div class="mag-accent" style="background:#c17f24;"></div>
+            <div class="mag-body">
+              <div class="mag-theme">🔁 실패 재정의</div>
+              <div class="mag-headline">"여기는 출시하고 난 다음에 완성해 나갑니다. 우리가 '업가전'을 하고 있는데, 그게 바로 이 방식이어야 합니다."</div>
+              <div class="mag-expand-wrap" id="think-expand-c" style="display:none;">
+                <blockquote class="mag-full-quote">"로봇이 시연 중에 넘어지는 걸 보고 — 우리는 사색이 됩니다. 근데 그쪽 엔지니어들은 '당연한 거 아니냐'는 표정이에요. 우리는 출시할 때 99.99999점을 받을 때까지 개발하다가 내잖아요. 여기는 출시하고 난 다음에 완성을 해 나갑니다. 우리가 '업가전'을 하고 있는데, 그게 바로 이 — 출시 후 완성도를 올리는 방식이어야 합니다."</blockquote>
+                <div class="mag-q-box">
+                  <div class="mag-q-label">💡 가기 전 생각해볼 질문</div>
+                  <div class="mag-q-text">'실패는 성공의 필요충분 조건'이라는 말은 이론적으로는 알고 있습니다. 본인이 마지막으로 팀원의 실패를 '당연한 것'으로 받아준 경험은 언제입니까? 중청로봇 시연 현장에서 그들의 '실패에 대한 표정'을 직접 보고 오십시오.</div>
                 </div>
               </div>
-              <button class="think-expand-btn" onclick="toggleThinkCard('c')" id="think-btn-c">전체 코멘트 보기 ▾</button>
-              <div class="insight-row-tags" style="margin-top:8px;"><span class="insight-tag">🔁 실패 재정의</span><span class="insight-tag">출시 후 완성</span><span class="insight-tag">업가전</span></div>
+              <div class="mag-footer">
+                <div class="mag-av" style="background:#c17f24;">C</div>
+                <div class="mag-meta-text">기이수자 코멘트 · '26년 디브리프</div>
+                <button class="mag-more-btn" id="think-btn-c" onclick="toggleThinkCard('c')">전체 보기 ▾</button>
+              </div>
+              <div class="mag-tags"><span class="mag-tag">🔁 실패 재정의</span><span class="mag-tag">출시 후 완성</span><span class="mag-tag">업가전</span></div>
             </div>
           </div>
-          <!-- D -->
-          <div class="think-card">
-            <div class="think-card-head" style="background:#1a1a2e;">
-              <div class="think-av">D</div>
-              <div>
-                <div class="think-card-title">기이수자 코멘트 — 꿈의 크기</div>
-                <div class="think-card-sub">'26년 현장 디브리프 발췌</div>
-              </div>
-            </div>
-            <div class="think-card-body">
-              <blockquote class="think-quote think-quote-summary">"꿈이 작습니다. 실제로 그 꿈을 얘기하는 것 자체를 두려워해요. 꿈이 작으면 그만큼밖에 못 합니다."</blockquote>
-              <div class="think-expand-wrap" id="think-expand-d" style="display:none;">
-                <blockquote class="think-quote think-quote-full">"LG전자가 상당한 역량을 갖고 있지만 제가 회사에 16년 만에 돌아와서 보니, 첫 번째는 꿈이 작습니다. 실제로 그 꿈을 얘기하는 것 자체를 두려워해요. 사원들이 비아냥거릴까봐. 머스크가 우주선을 쏴서 다시 돌아오게 한다는 게 처음엔 되게 웃겼잖아요. 근데 해내지 않습니까. BYD가 '지구 온도 1도 낮추기'를 모토로 걸고 정부 정책이 거기 맞춰 움직이는 걸 보고 무서움을 느꼈습니다. 꿈이 작으면 그만큼밖에 못 합니다."</blockquote>
-                <div class="think-q-box">
-                  <div class="think-q-label">💡 가기 전 생각해볼 질문</div>
-                  <div class="think-q-text">본인의 사업부가 5년 뒤 '세계 1등'이 되는 그림 — 그 첫 문장을 한국에 두고 가십시오. 그리고 BYD 역사관에서 그들의 '1도 낮추기'와 비교해 보십시오. 우리 사업부의 꿈은 비아냥받을 만큼 큽니까, 아니면 안전해서 작습니까?</div>
+          <div class="mag-card">
+            <div class="mag-accent" style="background:#1a1a2e;"></div>
+            <div class="mag-body">
+              <div class="mag-theme">🚀 꿈의 크기</div>
+              <div class="mag-headline">"꿈이 작습니다. 꿈을 얘기하는 것 자체를 두려워해요. 꿈이 작으면 그만큼밖에 못 합니다."</div>
+              <div class="mag-expand-wrap" id="think-expand-d" style="display:none;">
+                <blockquote class="mag-full-quote">"LG전자가 상당한 역량을 갖고 있지만 제가 회사에 16년 만에 돌아와서 보니, 첫 번째는 꿈이 작습니다. 실제로 그 꿈을 얘기하는 것 자체를 두려워해요. 사원들이 비아냥거릴까봐. 머스크가 우주선을 쏴서 다시 돌아오게 한다는 게 처음엔 되게 웃겼잖아요. 근데 해내지 않습니까. BYD가 '지구 온도 1도 낮추기'를 모토로 걸고 정부 정책이 거기 맞춰 움직이는 걸 보고 무서움을 느꼈습니다. 꿈이 작으면 그만큼밖에 못 합니다."</blockquote>
+                <div class="mag-q-box">
+                  <div class="mag-q-label">💡 가기 전 생각해볼 질문</div>
+                  <div class="mag-q-text">본인의 사업부가 5년 뒤 '세계 1등'이 되는 그림 — 그 첫 문장을 한국에 두고 가십시오. 그리고 BYD 역사관에서 그들의 '1도 낮추기'와 비교해 보십시오. 우리 사업부의 꿈은 비아냥받을 만큼 큽니까, 아니면 안전해서 작습니까?</div>
                 </div>
               </div>
-              <button class="think-expand-btn" onclick="toggleThinkCard('d')" id="think-btn-d">전체 코멘트 보기 ▾</button>
-              <div class="insight-row-tags" style="margin-top:8px;"><span class="insight-tag">🚀 꿈의 크기</span><span class="insight-tag">BYD</span><span class="insight-tag">비전 선포</span></div>
+              <div class="mag-footer">
+                <div class="mag-av" style="background:#1a1a2e;">D</div>
+                <div class="mag-meta-text">기이수자 코멘트 · '26년 디브리프</div>
+                <button class="mag-more-btn" id="think-btn-d" onclick="toggleThinkCard('d')">전체 보기 ▾</button>
+              </div>
+              <div class="mag-tags"><span class="mag-tag">🚀 꿈의 크기</span><span class="mag-tag">BYD</span><span class="mag-tag">비전 선포</span></div>
             </div>
           </div>
-          <!-- E -->
-          <div class="think-card">
-            <div class="think-card-head" style="background:#2d6a4f;">
-              <div class="think-av">E</div>
-              <div>
-                <div class="think-card-title">기이수자 코멘트 — 인재 = 자본</div>
-                <div class="think-card-sub">'26년 현장 디브리프 발췌</div>
-              </div>
-            </div>
-            <div class="think-card-body">
-              <blockquote class="think-quote think-quote-summary">"인재는 비용이 아니고 자본이다. 도시 자체가 '치열한 자기 발전'에 익숙합니다."</blockquote>
-              <div class="think-expand-wrap" id="think-expand-e" style="display:none;">
-                <blockquote class="think-quote think-quote-full">"교수님께서 '인재는 비용이 아니고 자본이다'라는 말씀을 하셨는데, 인재 가치는 밀도·인력 효율·인센티브 적합도로 측정된다고 합니다. 상위 20%가 하위 20%의 8.3배 가치를 창출합니다. 화웨이는 약 40조를 인재 투자에 쓰고, BYD는 매년 5만 명을 채용하고, 텐센트는 3~4인 팀으로 실패를 용인하며 빠르게 갑니다. 35~40세에는 스핀오프해 자기 사업을 할 수 있는 기회까지 — 도시 자체가 '치열한 자기 발전'에 익숙합니다."</blockquote>
-                <div class="think-q-box">
-                  <div class="think-q-label">💡 가기 전 생각해볼 질문</div>
-                  <div class="think-q-text">'인건비를 마치 고정비 취급하는 우리의 습관' — 본인은 평소 인재를 P&L의 비용으로 봅니까, B/S의 자본으로 봅니까? '중국의 젊은 천재가 우리 LG를 선택하지 않는 이유'를 1개 발견해 오십시오.</div>
+          <div class="mag-card">
+            <div class="mag-accent" style="background:#2d6a4f;"></div>
+            <div class="mag-body">
+              <div class="mag-theme">👥 인재 = 자본</div>
+              <div class="mag-headline">"인재는 비용이 아니고 자본이다. 도시 자체가 '치열한 자기 발전'에 익숙합니다."</div>
+              <div class="mag-expand-wrap" id="think-expand-e" style="display:none;">
+                <blockquote class="mag-full-quote">"교수님께서 '인재는 비용이 아니고 자본이다'라는 말씀을 하셨는데, 인재 가치는 밀도·인력 효율·인센티브 적합도로 측정된다고 합니다. 상위 20%가 하위 20%의 8.3배 가치를 창출합니다. 화웨이는 약 40조를 인재 투자에 쓰고, BYD는 매년 5만 명을 채용하고, 텐센트는 3~4인 팀으로 실패를 용인하며 빠르게 갑니다. 35~40세에는 스핀오프해 자기 사업을 할 수 있는 기회까지 — 도시 자체가 '치열한 자기 발전'에 익숙합니다."</blockquote>
+                <div class="mag-q-box">
+                  <div class="mag-q-label">💡 가기 전 생각해볼 질문</div>
+                  <div class="mag-q-text">'인건비를 마치 고정비 취급하는 우리의 습관' — 본인은 평소 인재를 P&L의 비용으로 봅니까, B/S의 자본으로 봅니까? '중국의 젊은 천재가 우리 LG를 선택하지 않는 이유'를 1개 발견해 오십시오.</div>
                 </div>
               </div>
-              <button class="think-expand-btn" onclick="toggleThinkCard('e')" id="think-btn-e">전체 코멘트 보기 ▾</button>
-              <div class="insight-row-tags" style="margin-top:8px;"><span class="insight-tag">👥 인재 = 자본</span><span class="insight-tag">B/S 자본</span><span class="insight-tag">스핀오프</span></div>
+              <div class="mag-footer">
+                <div class="mag-av" style="background:#2d6a4f;">E</div>
+                <div class="mag-meta-text">기이수자 코멘트 · '26년 디브리프</div>
+                <button class="mag-more-btn" id="think-btn-e" onclick="toggleThinkCard('e')">전체 보기 ▾</button>
+              </div>
+              <div class="mag-tags"><span class="mag-tag">👥 인재 = 자본</span><span class="mag-tag">B/S 자본</span><span class="mag-tag">스핀오프</span></div>
             </div>
           </div>
-          <!-- F -->
-          <div class="think-card">
-            <div class="think-card-head" style="background:#6b21a8;">
-              <div class="think-av">F</div>
-              <div>
-                <div class="think-card-title">기이수자 코멘트 — AI·데이터 주권</div>
-                <div class="think-card-sub">'26년 현장 디브리프 발췌</div>
-              </div>
-            </div>
-            <div class="think-card-body">
-              <blockquote class="think-quote think-quote-summary">"AI 싸움은 데이터 싸움인데, 한국은 데이터 하나 모으는 것도 난리가 납니다."</blockquote>
-              <div class="think-expand-wrap" id="think-expand-f" style="display:none;">
-                <blockquote class="think-quote think-quote-full">"옵티머스는 미국에서 사람을 시간당 6만 5천원씩 주면서 피지컬 AI를 학습시킵니다. 중국은 5천원이 안 됩니다. 미국은 AI 신뢰도가 34%, 중국은 72%. 중국은 신뢰 여부와 상관없이 데이터를 가져갑니다. 동의한 적 없어도 국가가 동의를 받아놨거든요. 결국 AI 싸움은 데이터 싸움인데, 한국은 데이터 하나 모으는 것도 난리가 납니다. 누가 더 학습을 많이 할 것인가에 대한 고민이 큽니다."</blockquote>
-                <div class="think-q-box">
-                  <div class="think-q-label">💡 가기 전 생각해볼 질문</div>
-                  <div class="think-q-text">'우리는 전 세계에 깔린 디바이스의 데이터를 ThinQ를 통해 제대로 활용하고 있습니까?' 데이터를 모을 수 없는 환경에서 LG가 갈 길은 무엇입니까 — 자체 데이터 수집인가, 글로벌 적합형 AI 솔루션인가? 무인택시·드론배달 현장에서 '데이터가 곧 인프라'가 된 모습을 직접 확인하십시오.</div>
+          <div class="mag-card">
+            <div class="mag-accent" style="background:#6b21a8;"></div>
+            <div class="mag-body">
+              <div class="mag-theme">🤖 AI·데이터 주권</div>
+              <div class="mag-headline">"AI 싸움은 데이터 싸움인데, 한국은 데이터 하나 모으는 것도 난리가 납니다."</div>
+              <div class="mag-expand-wrap" id="think-expand-f" style="display:none;">
+                <blockquote class="mag-full-quote">"옵티머스는 미국에서 사람을 시간당 6만 5천원씩 주면서 피지컬 AI를 학습시킵니다. 중국은 5천원이 안 됩니다. 미국은 AI 신뢰도가 34%, 중국은 72%. 중국은 신뢰 여부와 상관없이 데이터를 가져갑니다. 동의한 적 없어도 국가가 동의를 받아놨거든요. 결국 AI 싸움은 데이터 싸움인데, 한국은 데이터 하나 모으는 것도 난리가 납니다. 누가 더 학습을 많이 할 것인가에 대한 고민이 큽니다."</blockquote>
+                <div class="mag-q-box">
+                  <div class="mag-q-label">💡 가기 전 생각해볼 질문</div>
+                  <div class="mag-q-text">'우리는 전 세계에 깔린 디바이스의 데이터를 ThinQ를 통해 제대로 활용하고 있습니까?' 무인택시·드론배달 현장에서 '데이터가 곧 인프라'가 된 모습을 직접 확인하십시오.</div>
                 </div>
               </div>
-              <button class="think-expand-btn" onclick="toggleThinkCard('f')" id="think-btn-f">전체 코멘트 보기 ▾</button>
-              <div class="insight-row-tags" style="margin-top:8px;"><span class="insight-tag">🤖 AI·데이터</span><span class="insight-tag">피지컬 AI</span><span class="insight-tag">ThinQ</span></div>
+              <div class="mag-footer">
+                <div class="mag-av" style="background:#6b21a8;">F</div>
+                <div class="mag-meta-text">기이수자 코멘트 · '26년 디브리프</div>
+                <button class="mag-more-btn" id="think-btn-f" onclick="toggleThinkCard('f')">전체 보기 ▾</button>
+              </div>
+              <div class="mag-tags"><span class="mag-tag">🤖 AI·데이터</span><span class="mag-tag">피지컬 AI</span><span class="mag-tag">ThinQ</span></div>
             </div>
           </div>
-          <!-- G -->
-          <div class="think-card">
-            <div class="think-card-head" style="background:#1e3a5f;">
-              <div class="think-av">G</div>
-              <div>
-                <div class="think-card-title">기이수자 코멘트 — 플랫폼·게임의 룰</div>
-                <div class="think-card-sub">'26년 현장 디브리프 발췌</div>
-              </div>
-            </div>
-            <div class="think-card-body">
-              <blockquote class="think-quote think-quote-summary">"지금은 폴짝폴짝 뛰는 로봇이지만, 곧 자율주행이 닿게 됩니다. 진짜 무서워지겠다."</blockquote>
-              <div class="think-expand-wrap" id="think-expand-g" style="display:none;">
-                <blockquote class="think-quote think-quote-full">"중청로봇 봤을 때 '저거 거의 하드웨어 회사인데 피지컬 AI 되려면 머리가 똑똑해야 되는데' 걱정했어요. 근데 검색해 보니 CEO가 샤오펑 출신이고, 샤오펑이 뒤에서 전주 역할을 해주고 있더라고요. 최근엔 샤오펑이 자율주행 최고 책임자를 이쪽으로 옮겼어요. 지금은 그냥 폴짝폴짝 뛰는 로봇이지만, 곧 자율주행이 닿게 됩니다. 진짜 무서워지겠다 — 우리도 다음 스텝의 잠재성을 보고 투자하는 방식을 배워야 합니다."</blockquote>
-                <div class="think-q-box">
-                  <div class="think-q-label">💡 가기 전 생각해볼 질문</div>
-                  <div class="think-q-text">샤오펑(Xpeng) 현장에서 — '하드웨어 회사가 어느 시점에 플랫폼 회사로 도약했는가'의 단서를 1개 찾아오십시오. 게임의 룰을 따라가는 회사가 될지, 룰을 만드는 회사가 될지의 선택은 '큰 결정'이 아니라 '작은 투자'에서 시작됩니다.</div>
+          <div class="mag-card">
+            <div class="mag-accent" style="background:#1e3a5f;"></div>
+            <div class="mag-body">
+              <div class="mag-theme">🎯 플랫폼·게임의 룰</div>
+              <div class="mag-headline">"지금은 폴짝폴짝 뛰는 로봇이지만, 곧 자율주행이 닿게 됩니다. 진짜 무서워지겠다."</div>
+              <div class="mag-expand-wrap" id="think-expand-g" style="display:none;">
+                <blockquote class="mag-full-quote">"중청로봇 봤을 때 '저거 거의 하드웨어 회사인데 피지컬 AI 되려면 머리가 똑똑해야 되는데' 걱정했어요. 근데 검색해 보니 CEO가 샤오펑 출신이고, 샤오펑이 뒤에서 전주 역할을 해주고 있더라고요. 최근엔 샤오펑이 자율주행 최고 책임자를 이쪽으로 옮겼어요. 지금은 그냥 폴짝폴짝 뛰는 로봇이지만, 곧 자율주행이 닿게 됩니다. 진짜 무서워지겠다 — 우리도 다음 스텝의 잠재성을 보고 투자하는 방식을 배워야 합니다."</blockquote>
+                <div class="mag-q-box">
+                  <div class="mag-q-label">💡 가기 전 생각해볼 질문</div>
+                  <div class="mag-q-text">샤오펑(Xpeng) 현장에서 — '하드웨어 회사가 어느 시점에 플랫폼 회사로 도약했는가'의 단서를 1개 찾아오십시오. 게임의 룰을 따라가는 회사가 될지, 룰을 만드는 회사가 될지의 선택은 '큰 결정'이 아니라 '작은 투자'에서 시작됩니다.</div>
                 </div>
               </div>
-              <button class="think-expand-btn" onclick="toggleThinkCard('g')" id="think-btn-g">전체 코멘트 보기 ▾</button>
-              <div class="insight-row-tags" style="margin-top:8px;"><span class="insight-tag">🎯 게임의 룰</span><span class="insight-tag">Xpeng-중청로봇</span><span class="insight-tag">잠재성 투자</span></div>
+              <div class="mag-footer">
+                <div class="mag-av" style="background:#1e3a5f;">G</div>
+                <div class="mag-meta-text">기이수자 코멘트 · '26년 디브리프</div>
+                <button class="mag-more-btn" id="think-btn-g" onclick="toggleThinkCard('g')">전체 보기 ▾</button>
+              </div>
+              <div class="mag-tags"><span class="mag-tag">🎯 게임의 룰</span><span class="mag-tag">Xpeng-중청로봇</span><span class="mag-tag">잠재성 투자</span></div>
             </div>
           </div>
-            </div><!-- think-slider-track -->
-          </div><!-- think-slider-wrap -->
-
-          <!-- 슬라이더 네비게이션 -->
-          <div class="think-slider-nav">
-            <button class="think-slider-btn" onclick="thinkSlide(-1)">←</button>
-            <div class="think-slider-dots" id="thinkDots">
-              <div class="think-slider-dot active" onclick="thinkGoTo(0)">A</div>
-              <div class="think-slider-dot" onclick="thinkGoTo(1)">B</div>
-              <div class="think-slider-dot" onclick="thinkGoTo(2)">C</div>
-              <div class="think-slider-dot" onclick="thinkGoTo(3)">D</div>
-              <div class="think-slider-dot" onclick="thinkGoTo(4)">E</div>
-              <div class="think-slider-dot" onclick="thinkGoTo(5)">F</div>
-              <div class="think-slider-dot" onclick="thinkGoTo(6)">G</div>
-            </div>
-            <button class="think-slider-btn" onclick="thinkSlide(1)">→</button>
           </div>
 
           <!-- 공통으로 나온 말 -->
@@ -3178,69 +3211,6 @@
 
 
 
-    <!-- ⑤ 관찰 미션 체크리스트 -->
-    <div class="main-accord-item open" id="mac-4">
-      <button class="main-accord-trigger" onclick="toggleMAC('mac-4')">
-        <div class="mat-icon-wrap">✅</div>
-        <div class="mat-texts">
-          <div class="mat-title">관찰 미션 체크리스트</div>
-          <div class="mat-sub">현장 확인 항목 10개</div>
-        </div>
-        <span class="mat-chevron">▼</span>
-      </button>
-      <div class="main-accord-body">
-        <div style="padding:0 24px 8px;">
-          <!-- ── 관찰 미션 체크리스트 ── -->
-  <div class="section" style="padding-top:8px;">
-          <div class="cl-intro" style="margin-bottom:10px;">각 방문지에서 관찰 미션(팩트 확인)과 통찰 미션(LG 연결 사고)을 수행합니다.</div>
-          <!-- 관찰미션 진행률 바 -->
-          <div class="progress-wrap" style="padding:14px 0 10px;background:transparent;border-bottom:none;margin-bottom:4px;">
-            <div class="progress-header">
-              <span class="progress-title">🎯 관찰 미션 진행률</span>
-              <span class="progress-fraction" id="cl-prog-frac">0 / 9</span>
-            </div>
-            <div class="progress-bar-bg">
-              <div class="progress-bar-fill" id="cl-prog-bar" style="width:0%"></div>
-            </div>
-            <div class="progress-sub" id="cl-prog-sub">체크박스를 클릭하여 완료 여부를 기록하세요.</div>
-          </div>
-
-    <div class="cl-tab-bar" id="clTabBar" style="display:none;">
-      <button class="cl-tab-btn d1 active" onclick="switchClTab(0)">DAY 1</button>
-      <button class="cl-tab-btn d2" onclick="switchClTab(1)">DAY 2</button>
-      <button class="cl-tab-btn d3" onclick="switchClTab(2)">DAY 3</button>
-    </div>
-
-    <div class="cl-group">
-      <div class="cl-day-bar cl-d1">DAY 1 · 7/1 (수)</div>
-      <div class="cl-items">
-        <div class="cl-item" id="cl-1" style="-webkit-user-select:none;user-select:none;cursor:default;"><div class="cl-cb" id="cl-cb-1">✓</div><div class="cl-text"><span class="cl-num">#1</span><span class="cl-venue">중청로봇</span>'공급망 활용으로 6개월 내 신모델'이 가능한 EngineAI의 R&D 조직과 비교 — <strong>우리 R&D가 같은 속도를 내려면 무엇 1개를 버려야 하는가</strong> (조직? 검증 절차? 자체 부품 고집?)</div><button class="cl-detail-btn" onclick="event.stopPropagation();openDM(1)">상세 미션 ↗</button></div>
-      </div>
-    </div>
-
-    <div class="cl-group">
-      <div class="cl-day-bar cl-d2">DAY 2 · 7/2 (목)</div>
-      <div class="cl-items">
-        <div class="cl-item" id="cl-2" style="-webkit-user-select:none;user-select:none;cursor:default;"><div class="cl-cb" id="cl-cb-2">✓</div><div class="cl-text"><span class="cl-num">#2</span><span class="cl-venue">BYD</span>30년 타임라인 中 <strong>결정적 turning point 3개</strong>를 역사관에서 메모, 지금의 BYD를 만든 핵심 요소를 한 단어로 정의</div><button class="cl-detail-btn" onclick="event.stopPropagation();openDM(2)">상세 미션 ↗</button></div>
-        <div class="cl-item" id="cl-3" style="-webkit-user-select:none;user-select:none;cursor:default;"><div class="cl-cb" id="cl-cb-3">✓</div><div class="cl-text"><span class="cl-num">#3</span><span class="cl-venue">무인택시</span>탑승 후 <strong>기존 택시와 다른 점</strong>을 승차 편의성·안전 체감 관점에서 기록</div><button class="cl-detail-btn" onclick="event.stopPropagation();openDM(3)">상세 미션 ↗</button></div>
-        <div class="cl-item" id="cl-4" style="-webkit-user-select:none;user-select:none;cursor:default;"><div class="cl-cb" id="cl-cb-4">✓</div><div class="cl-text"><span class="cl-num">#4</span><span class="cl-venue">드론 배달</span>드론 받는 15분 중 — <strong>LG의 어떤 사업이 가장 먼저 위협받고, 어떤 사업이 기회를 얻는가</strong> 직무 관점에서 각 1개</div><button class="cl-detail-btn" onclick="event.stopPropagation();openDM(4)">상세 미션 ↗</button></div>
-        <div class="cl-item" id="cl-5" style="-webkit-user-select:none;user-select:none;cursor:default;"><div class="cl-cb" id="cl-cb-5">✓</div><div class="cl-text"><span class="cl-num">#5</span><span class="cl-venue">NIO House</span>배터리 탈착 결정 — <strong>본인이 NIO 임원이라면 어떻게 결정했을지와 그 이유</strong> 정리</div><button class="cl-detail-btn" onclick="event.stopPropagation();openDM(5)">상세 미션 ↗</button></div>
-        <div class="cl-item" id="cl-6" style="-webkit-user-select:none;user-select:none;cursor:default;"><div class="cl-cb" id="cl-cb-6">✓</div><div class="cl-text"><span class="cl-num">#6</span><span class="cl-venue">Upper Hills</span>한국 동급 차량 대비 <strong>'한 수 위인 점' 1개와 '아직 못한 점' 1개</strong>를 의도적으로 모두 찾기</div><button class="cl-detail-btn" onclick="event.stopPropagation();openDM(6)">상세 미션 ↗</button></div>
-      </div>
-    </div>
-
-    <div class="cl-group">
-      <div class="cl-day-bar cl-d3">DAY 3 · 7/3 (금)</div>
-      <div class="cl-items">
-        <div class="cl-item" id="cl-7" style="-webkit-user-select:none;user-select:none;cursor:default;"><div class="cl-cb" id="cl-cb-7">✓</div><div class="cl-text"><span class="cl-num">#7</span><span class="cl-venue">징동전기</span>우리 제품/기술과 Hisense·TCL·Midea 동급 제품 가격을 사진으로 기록 — <strong>가격차가 가장 큰 제품·가장 작은 제품은?</strong> 그 차이가 '품질 차이'로 정당화되는지 눈으로 검증</div><button class="cl-detail-btn" onclick="event.stopPropagation();openDM(7)">상세 미션 ↗</button></div>
-        <div class="cl-item" id="cl-8" style="-webkit-user-select:none;user-select:none;cursor:default;"><div class="cl-cb" id="cl-cb-8">✓</div><div class="cl-text"><span class="cl-num">#8</span><span class="cl-venue">화창베이</span>부품 1개를 미리 정해 와서 <strong>가격·납기·MOQ를 직접 묻기</strong> (통역 동행) — 그 자리에서 즉답: '조달 전략을 바꿀 것인가, 유지할 것인가'</div><button class="cl-detail-btn" onclick="event.stopPropagation();openDM(8)">상세 미션 ↗</button></div>
-        <div class="cl-item" id="cl-9" style="-webkit-user-select:none;user-select:none;cursor:default;"><div class="cl-cb" id="cl-cb-9">✓</div><div class="cl-text"><span class="cl-num">#9</span><span class="cl-venue">Xpeng</span>AeroHT 분리형 비행 기체 관찰 — <strong>10년 뒤 '집(Home)'의 구조와 가전 배치(Layout)</strong>는 어떻게 바뀌어야 하는가</div><button class="cl-detail-btn" onclick="event.stopPropagation();openDM(9)">상세 미션 ↗</button></div>
-      </div>
-    </div>
-  </div>
-        </div>
-      </div>
-    </div>
     <div class="main-accord-item open" id="mac-3">
       <button class="main-accord-trigger" onclick="toggleMAC('mac-3')">
         <div class="mat-icon-wrap">📝</div>
@@ -4706,44 +4676,6 @@ window.switchSubTab = function(idx) {
 };
 </script>
 
-<script>
-// 기이수자 카드 슬라이더
-var thinkCurrent = 0;
-var thinkTotal = 7;
-
-function thinkUpdateUI() {
-  var track = document.getElementById('thinkTrack');
-  if (!track) return;
-  track.style.transform = 'translateX(-' + (thinkCurrent * 100) + '%)';
-  var dots = document.querySelectorAll('.think-slider-dot');
-  dots.forEach(function(d, i) { d.classList.toggle('active', i === thinkCurrent); });
-}
-
-function thinkSlide(dir) {
-  thinkCurrent = (thinkCurrent + dir + thinkTotal) % thinkTotal;
-  thinkUpdateUI();
-}
-
-function thinkGoTo(idx) {
-  thinkCurrent = idx;
-  thinkUpdateUI();
-}
-
-// 터치 스와이프
-(function() {
-  var startX = 0;
-  document.addEventListener('touchstart', function(e) {
-    var track = document.getElementById('thinkTrack');
-    if (track && track.contains(e.target)) startX = e.touches[0].clientX;
-  }, { passive: true });
-  document.addEventListener('touchend', function(e) {
-    var track = document.getElementById('thinkTrack');
-    if (!track || !track.contains(e.target)) return;
-    var dx = e.changedTouches[0].clientX - startX;
-    if (Math.abs(dx) > 40) thinkSlide(dx < 0 ? 1 : -1);
-  }, { passive: true });
-})();
-</script>
 
 <script>
 function openLGeniePopup() {
