@@ -1953,6 +1953,7 @@
     white-space: nowrap;
   }
   .prep-next-btn:hover { border-color: var(--lg-red); color: var(--lg-red); background: #fff8f8; }
+  .prep-check-btn.done { background: #16a34a !important; color: #fff !important; border-color: #16a34a !important; }
   .prep-checked-count {
     font-size: 16px; color: var(--text-muted);
     font-family: 'DM Sans', sans-serif;
@@ -2366,14 +2367,14 @@
     <div class="prep-tabs-wrap">
       <button class="prep-arrow" id="prepArrowLeft" onclick="scrollPrepTabs(-1)" aria-label="이전">‹</button>
       <div class="prep-tabs" id="prepTabs">
-        <button class="prep-tab active" onclick="switchPrep(0)">🌤️ 날씨·옷차림</button>
-        <button class="prep-tab" onclick="switchPrep(1)">💳 결제·환율</button>
-        <button class="prep-tab" onclick="switchPrep(2)">📱 Alipay 등록 방법</button>
-        <button class="prep-tab" onclick="switchPrep(3)">📚 필수 과정 수강</button>
-        <button class="prep-tab" onclick="switchPrep(4)">✈ 출장품의</button>
-        <button class="prep-tab" onclick="switchPrep(5)">🛫 공항 수속 안내</button>
-        <button class="prep-tab" onclick="switchPrep(6)">🏨 호텔 정보</button>
-        <button class="prep-tab" onclick="switchPrep(7)">🛂 입국 신고서</button>
+        <button class="prep-tab active" id="prep-tab-0" onclick="switchPrep(0)" style="position:relative;">🌤️ 날씨·옷차림<span class="prep-tab-done" id="prep-dot-0"></span></button>
+        <button class="prep-tab" id="prep-tab-1" onclick="switchPrep(1)" style="position:relative;">💳 결제·환율<span class="prep-tab-done" id="prep-dot-1"></span></button>
+        <button class="prep-tab" id="prep-tab-2" onclick="switchPrep(2)" style="position:relative;">📱 Alipay 등록 방법<span class="prep-tab-done" id="prep-dot-2"></span></button>
+        <button class="prep-tab" id="prep-tab-3" onclick="switchPrep(3)" style="position:relative;">📚 필수 과정 수강<span class="prep-tab-done" id="prep-dot-3"></span></button>
+        <button class="prep-tab" id="prep-tab-4" onclick="switchPrep(4)" style="position:relative;">✈ 출장품의<span class="prep-tab-done" id="prep-dot-4"></span></button>
+        <button class="prep-tab" id="prep-tab-5" onclick="switchPrep(5)" style="position:relative;">🛫 공항 수속 안내<span class="prep-tab-done" id="prep-dot-5"></span></button>
+        <button class="prep-tab" id="prep-tab-6" onclick="switchPrep(6)" style="position:relative;">🏨 호텔 정보<span class="prep-tab-done" id="prep-dot-6"></span></button>
+        <button class="prep-tab" id="prep-tab-7" onclick="switchPrep(7)" style="position:relative;">🛂 입국 신고서<span class="prep-tab-done" id="prep-dot-7"></span></button>
       </div>
       <button class="prep-arrow" id="prepArrowRight" onclick="scrollPrepTabs(1)" aria-label="다음">›</button>
     </div>
@@ -2913,7 +2914,7 @@
           <div class="progress-wrap" style="padding:14px 0 10px;background:transparent;border-bottom:none;margin-bottom:4px;">
             <div class="progress-header">
               <span class="progress-title">🎯 관찰 미션 진행률</span>
-              <span class="progress-fraction" id="cl-prog-frac">0 / 9</span>
+              <span class="progress-fraction" id="cl-prog-frac">0 / 10</span>
             </div>
             <div class="progress-bar-bg">
               <div class="progress-bar-fill" id="cl-prog-bar" style="width:0%"></div>
@@ -3866,23 +3867,20 @@ function closeAlipayModal() {
   var m = document.getElementById('alipayModal');
   if (m) { m.style.display = 'none'; document.body.style.overflow = ''; }
 }
+function switchAlipayTab(n) {
+  document.getElementById('alipay-panel-0').style.display = n === 0 ? 'block' : 'none';
+  document.getElementById('alipay-panel-1').style.display = n === 1 ? 'block' : 'none';
+  var t0 = document.getElementById('alipay-tab-0');
+  var t1 = document.getElementById('alipay-tab-1');
+  if (t0) { t0.style.background = n===0?'#fff':'#f9fafb'; t0.style.color = n===0?'#A50034':'#6b7280'; t0.style.fontWeight = n===0?'700':'600'; }
+  if (t1) { t1.style.background = n===1?'#fff':'#f9fafb'; t1.style.color = n===1?'#A50034':'#6b7280'; t1.style.fontWeight = n===1?'700':'600'; }
+}
 
 /* ── PDF 뷰어 ── */
 function openPdfViewer(url) {
-  var d = document.getElementById('pdfDrawer');
-  var f = document.getElementById('pdfFrame');
-  if (!d || !f) return;
-  f.src = url;
-  d.style.display = 'block';
-  document.body.style.overflow = 'hidden';
+  window.open(url, '_blank');
 }
-function closePdfViewer() {
-  var d = document.getElementById('pdfDrawer');
-  var f = document.getElementById('pdfFrame');
-  if (d) d.style.display = 'none';
-  if (f) f.src = '';
-  document.body.style.overflow = '';
-}
+function closePdfViewer() {}
 
 /* ── 랩업 팝업 ── */
 function openWrapupPopup() {
@@ -3913,6 +3911,9 @@ function togglePrepCheck(n) {
     btn.classList.remove('done');
     btn.innerHTML = '<span class="check-icon">☑</span> 확인 완료';
   }
+  // 탭 dot 표시 (prep-chk-N → 해당 탭 N)
+  var dot = document.getElementById('prep-dot-' + n);
+  if (dot) dot.classList.toggle('show', !!prepChecked[n]);
   var total = document.querySelectorAll('[id^="prep-chk-"]').length;
   var done = Object.values(prepChecked).filter(Boolean).length;
   var bar = document.getElementById('prep-prog-bar');
@@ -3954,15 +3955,20 @@ function saveDMCheck(num, type, val) {
     if (done) {
       cb.style.background = 'var(--lg-red, #A50034)';
       cb.style.color = '#fff';
+      cb.textContent = '✓';
       item.style.opacity = '0.55';
       if (textEl) textEl.style.textDecoration = 'line-through';
+      if (!clChecked[num]) { clChecked[num] = true; }
     } else {
       cb.style.background = '';
       cb.style.color = '';
+      cb.textContent = '✓';
       item.style.opacity = '';
       if (textEl) textEl.style.textDecoration = '';
+      clChecked[num] = false;
     }
   }
+  updateCLProgress();
 }
 function saveDMMemo(num, val) {}
 
@@ -3991,10 +3997,12 @@ function toggleCLCheck(n, forceVal) {
 function updateCLProgress() {
   var total = document.querySelectorAll('[id^="cl-cb-"]').length;
   var done = Object.values(clChecked).filter(Boolean).length;
-  var bar = document.getElementById('clProgressBar');
-  var txt = document.getElementById('clProgressTxt');
+  var bar = document.getElementById('cl-prog-bar');
+  var frac = document.getElementById('cl-prog-frac');
+  var sub = document.getElementById('cl-prog-sub');
   if (bar) bar.style.width = (total ? Math.round(done / total * 100) : 0) + '%';
-  if (txt) txt.textContent = done + ' / ' + total + ' 완료';
+  if (frac) frac.textContent = done + ' / ' + total;
+  if (sub) sub.textContent = done === total ? '모든 관찰 미션을 완료했습니다! 🎉' : '상세 미션 팝업에서 SEE · APPLY를 체크하면 완료됩니다.';
 }
 
 window.openVP = function(num) {
@@ -4131,11 +4139,83 @@ document.addEventListener('keydown', function(e) {
 </div>
 
 <!-- ── Alipay 모달 ── -->
-<div id="alipayModal" style="display:none;position:fixed;inset:0;z-index:9500;background:rgba(0,0,0,0.5);align-items:center;justify-content:center;" onclick="closeAlipayModal()">
-  <div onclick="event.stopPropagation()" style="background:#fff;border-radius:16px;padding:28px;max-width:440px;width:90%;box-shadow:0 20px 60px rgba(0,0,0,0.3);">
-    <div style="font-size:18px;font-weight:700;margin-bottom:16px;">💳 Alipay 등록 방법</div>
-    <p style="font-size:15px;color:#4b5563;line-height:1.75;">① App Store / Play Store에서 <strong>Alipay</strong> 검색 후 설치<br>② 앱 실행 → 한국 휴대폰 번호로 가입<br>③ 여권 정보 입력 (본인 인증)<br>④ 한국 카드 등록 (Visa / Mastercard 가능)<br>⑤ 출발 전 소액 결제 테스트 권장</p>
-    <button onclick="closeAlipayModal()" style="margin-top:16px;width:100%;padding:12px;background:#A50034;color:#fff;border:none;border-radius:8px;font-size:15px;font-weight:700;cursor:pointer;">확인</button>
+<div id="alipayModal" style="display:none;position:fixed;inset:0;z-index:9500;background:rgba(0,0,0,0.55);align-items:flex-start;justify-content:center;overflow-y:auto;padding:20px 0;" onclick="closeAlipayModal()">
+  <div onclick="event.stopPropagation()" style="background:#fff;border-radius:16px;width:90%;max-width:680px;margin:auto;box-shadow:0 20px 60px rgba(0,0,0,0.3);overflow:hidden;">
+    <!-- 헤더 -->
+    <div style="background:linear-gradient(135deg,#A50034 0%,#6e0022 100%);padding:20px 24px;display:flex;align-items:center;justify-content:space-between;">
+      <div>
+        <div style="font-size:18px;font-weight:700;color:#fff;">알리페이(Alipay) 등록 안내</div>
+        <div style="font-size:13px;color:rgba(255,255,255,0.75);margin-top:3px;">현지 결제를 위한 사전 등록 안내 · 총 8단계</div>
+      </div>
+      <button onclick="closeAlipayModal()" style="background:rgba(255,255,255,0.2);border:none;color:#fff;width:34px;height:34px;border-radius:50%;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;">✕</button>
+    </div>
+    <!-- 본문 -->
+    <div style="padding:20px 24px;">
+      <!-- 안내문 -->
+      <div style="background:#fffbeb;border-left:4px solid #f59e0b;border-radius:0 8px 8px 0;padding:12px 16px;margin-bottom:20px;font-size:14px;line-height:1.7;color:#1a1a1a;">
+        중국 현지에서는 신용카드보다 <strong>모바일 결제가 더욱 보편화</strong>되어 있습니다.<br>
+        카카오페이, 토스페이 등 간편결제 앱 또는 <strong>알리페이를 출국 전 사전 등록</strong>하신 후 현지에서 활용하시기 바랍니다.
+      </div>
+      <!-- 탭 -->
+      <div style="display:flex;gap:0;border:1.5px solid #e5e7eb;border-radius:10px;overflow:hidden;margin-bottom:20px;">
+        <button id="alipay-tab-0" onclick="switchAlipayTab(0)" style="flex:1;padding:11px 8px;border:none;background:#f9fafb;font-size:14px;font-weight:600;color:#6b7280;cursor:pointer;border-right:1px solid #e5e7eb;">
+          📱 Step 1–4<br><span style="font-size:11px;font-weight:400;">앱 설치 · 기본 설정</span>
+        </button>
+        <button id="alipay-tab-1" onclick="switchAlipayTab(1)" style="flex:1;padding:11px 8px;border:none;background:#fff;font-size:14px;font-weight:700;color:#A50034;cursor:pointer;">
+          💳 Step 5–8<br><span style="font-size:11px;font-weight:400;color:#A50034;">카드 등록 · 완료</span>
+        </button>
+      </div>
+      <!-- Step 1-4 패널 -->
+      <div id="alipay-panel-0" style="display:none;">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          <div style="border:1.5px solid #e5e7eb;border-radius:10px;padding:14px;">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;"><span style="background:#A50034;color:#fff;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;">1</span><span style="font-size:14px;font-weight:700;">앱 다운로드</span></div>
+            <div style="font-size:13px;color:#6b7280;line-height:1.65;">앱스토어(iOS) 또는 구글플레이(Android)에서 <strong>"Alipay"</strong> 검색 → <strong>"Alipay - Simplify Your Life"</strong> 설치</div>
+          </div>
+          <div style="border:1.5px solid #e5e7eb;border-radius:10px;padding:14px;">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;"><span style="background:#A50034;color:#fff;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;">2</span><span style="font-size:14px;font-weight:700;">회원가입</span></div>
+            <div style="font-size:13px;color:#6b7280;line-height:1.65;">앱 실행 → <strong>Sign Up</strong> → 한국 휴대폰 번호(+82) 입력 → SMS 인증번호 확인</div>
+          </div>
+          <div style="border:1.5px solid #e5e7eb;border-radius:10px;padding:14px;">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;"><span style="background:#A50034;color:#fff;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;">3</span><span style="font-size:14px;font-weight:700;">본인 인증</span></div>
+            <div style="font-size:13px;color:#6b7280;line-height:1.65;"><strong>Verify Identity</strong> → 여권 정보(이름·번호·만료일) 입력 → 셀카 인증</div>
+          </div>
+          <div style="border:1.5px solid #e5e7eb;border-radius:10px;padding:14px;">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;"><span style="background:#A50034;color:#fff;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;">4</span><span style="font-size:14px;font-weight:700;">Account 메뉴 이동</span></div>
+            <div style="font-size:13px;color:#6b7280;line-height:1.65;">하단 <strong>Account</strong> 탭 → 본인 계정 정보 확인 후 다음 단계 진행</div>
+          </div>
+        </div>
+      </div>
+      <!-- Step 5-8 패널 -->
+      <div id="alipay-panel-1" style="display:block;">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          <div style="border:1.5px solid #e5e7eb;border-radius:10px;padding:14px;">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;"><span style="background:#A50034;color:#fff;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;">5</span><span style="font-size:14px;font-weight:700;">Bank Cards 선택</span></div>
+            <div style="font-size:13px;color:#6b7280;line-height:1.65;">Account 메뉴에서 <strong>Bank Cards</strong> 항목 선택</div>
+          </div>
+          <div style="border:1.5px solid #e5e7eb;border-radius:10px;padding:14px;">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;"><span style="background:#A50034;color:#fff;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;">6</span><span style="font-size:14px;font-weight:700;">결제 비밀번호 설정</span></div>
+            <div style="font-size:13px;color:#6b7280;line-height:1.65;">6자리 결제 비밀번호 <strong>2회 입력</strong> (연속·반복 숫자 불가)</div>
+          </div>
+          <div style="border:1.5px solid #e5e7eb;border-radius:10px;padding:14px;">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;"><span style="background:#A50034;color:#fff;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;">7</span><span style="font-size:14px;font-weight:700;">카드 번호 입력</span></div>
+            <div style="font-size:13px;color:#6b7280;line-height:1.65;">은행 카드 번호 직접 입력 또는 <strong>Scan</strong>으로 자동 인식</div>
+          </div>
+          <div style="border:1.5px solid #e5e7eb;border-radius:10px;padding:14px;">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;"><span style="background:#A50034;color:#fff;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;">8</span><span style="font-size:14px;font-weight:700;">카드 유효기한 등록</span></div>
+            <div style="font-size:13px;color:#6b7280;line-height:1.65;">만료일(MM/YY) · CVV2 입력 후 <strong>Agree to Terms and Add</strong></div>
+          </div>
+        </div>
+        <div style="margin-top:14px;background:#fef3c7;border-left:3px solid #f59e0b;border-radius:0 8px 8px 0;padding:10px 14px;font-size:13px;color:#1a1a1a;line-height:1.65;">
+          💡 <strong>지원 카드:</strong> VISA, Mastercard 등 해외 결제가 가능한 카드라면 법인카드·개인카드 구분 없이 등록하실 수 있습니다.
+        </div>
+      </div>
+      <!-- 화면 가이드 버튼 -->
+      <button onclick="openPdfViewer('https://raw.githubusercontent.com/728honey/globalinnovation/main/cnnia%20web.pdf')" style="margin-top:16px;width:100%;padding:12px;background:#1a1a2e;color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;">📸 단계별 화면 가이드 보기 (PDF) →</button>
+      <div style="display:flex;justify-content:flex-end;margin-top:10px;">
+        <button onclick="closeAlipayModal()" style="padding:10px 28px;background:#A50034;color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;">확인</button>
+      </div>
+    </div>
   </div>
 </div>
 
