@@ -1507,7 +1507,7 @@
   .dm-overlay.open { display: flex; }
   .dm-box {
     background: #fff; border-radius: 20px;
-    width: 100%; max-width: 580px; max-height: 88vh;
+    width: 100%; max-width: 580px; max-height: 96vh;
     overflow: hidden; display: flex; flex-direction: column;
     box-shadow: 0 32px 80px rgba(0,0,0,0.3);
     animation: dmIn 0.24s cubic-bezier(0.34,1.3,0.64,1);
@@ -3280,6 +3280,304 @@
 
 </div>
 
+  <!-- ── 상세 미션 팝업 ── -->
+  <div class="dm-overlay" id="dmOverlay" onclick="closeDMBg(event)">
+    <div class="dm-box" id="dmBox">
+
+  <div class="dm-panel" id="dm-panel-1">
+    <div class="dm-head">
+      <div class="dm-head-info">
+        <div class="dm-theme-badge theme-mobility">🚗 BYD</div>
+        <div class="dm-title">#1 BYD | 전시관 + 차량시승</div>
+      </div>
+      <button class="dm-close" onclick="closeDM()">💾 저장 후 닫기</button>
+    </div>
+    <div class="dm-body">
+      <div class="dm-section">
+        <div class="dm-section-label dm-label-obs"><div class="dm-label-icon obs">👁</div>Observation Mission — SEE 현장에서 볼 것</div>
+        <div class="dm-mission-item">
+          <label class="dm-mission-check"><input type="checkbox" id="dm-obs-chk-1" onchange="saveDMCheck(1,'obs',this.checked)"><span class="dm-check-box"></span></label>
+          <div class="dm-content dm-content-obs">전시관 2개 층에서 30년 발전사와 핵심기술(블레이드 배터리·e플랫폼 3.0·DM 하이브리드·DiLink)을 안내받고, 부지를 누비는 자율주행 궤도차 Skyshuttle을 직접 탑승. <strong>"에너지 획득→저장→응용"이 한 부지에 구현된 모습</strong>을 확인하십시오. 30년 타임라인 中 결정적 turning point 3개를 메모하십시오.</div>
+        </div>
+      </div>
+      <div class="dm-section">
+        <div class="dm-section-label dm-label-ins"><div class="dm-label-icon ins">💡</div>Insight Mission — APPLY 우리 적용 관점</div>
+        <div class="dm-mission-item">
+          <label class="dm-mission-check"><input type="checkbox" id="dm-ins-chk-1" onchange="saveDMCheck(1,'ins',this.checked)"><span class="dm-check-box"></span></label>
+          <div class="dm-content dm-content-ins">수직계열화의 통제력·개발 속도 이점과 막대한 투자·재무 부담이라는 양면을, <strong>우리 사업 구조에 어디까지·어떤 영역부터 적용할 것인가</strong>. 지금의 BYD를 만든 핵심 요소를 한 단어로 정의하고, 우리가 같은 길을 못 간 이유를 솔직하게 자문해 보십시오.</div>
+        </div>
+      </div>
+      <div class="dm-memo-wrap">
+        <div class="dm-memo-label">📝 현장 메모</div>
+        <textarea class="dm-memo" id="dm-memo-1" placeholder="현장에서 발견한 것, 느낀 것, 연결된 아이디어를 자유롭게 메모하세요." oninput="saveDMMemo(1,this.value)"></textarea>
+      </div>
+    </div>
+  </div>
+  <div class="dm-panel" id="dm-panel-2">
+    <div class="dm-head">
+      <div class="dm-head-info">
+        <div class="dm-theme-badge theme-robot">🤖 UBTECH</div>
+        <div class="dm-title">#2 UBTECH Robotics | 로봇시연 + Q&A</div>
+      </div>
+      <button class="dm-close" onclick="closeDM()">💾 저장 후 닫기</button>
+    </div>
+    <div class="dm-body">
+      <div class="dm-section">
+        <div class="dm-section-label dm-label-obs"><div class="dm-label-icon obs">👁</div>Observation Mission — SEE 현장에서 볼 것</div>
+        <div class="dm-mission-item">
+          <label class="dm-mission-check"><input type="checkbox" id="dm-obs-chk-2" onchange="saveDMCheck(2,'obs',this.checked)"><span class="dm-check-box"></span></label>
+          <div class="dm-content dm-content-obs">로봇이 충전 스테이션으로 걸어가 가슴의 배터리를 스스로 교체하는 전 과정을 직접 시연 관람하십시오. <strong>키 1.76m·52자유도·15kg 적재</strong>로 사람용 작업환경(문·작업대·컨베이어)에서 작동하는 방식을 구체적으로 기록하십시오.</div>
+        </div>
+      </div>
+      <div class="dm-section">
+        <div class="dm-section-label dm-label-ins"><div class="dm-label-icon ins">💡</div>Insight Mission — APPLY 우리 적용 관점</div>
+        <div class="dm-mission-item">
+          <label class="dm-mission-check"><input type="checkbox" id="dm-ins-chk-2" onchange="saveDMCheck(2,'ins',this.checked)"><span class="dm-check-box"></span></label>
+          <div class="dm-content dm-content-ins">Q&A에서 직접 질문하십시오 — <strong>우리 라인의 어느 공정(유연성이 필요하고 고정 자동화가 어려운 곳)에 먼저 적용 가능한가. 도입 ROI를 어떻게 판단할 것인가.</strong> BYD·폭스콘 등 실제 생산라인 투입 사례에서 우리 제조 현장에 주는 시사점을 정리하십시오.</div>
+        </div>
+      </div>
+      <div class="dm-memo-wrap">
+        <div class="dm-memo-label">📝 현장 메모</div>
+        <textarea class="dm-memo" id="dm-memo-2" placeholder="현장에서 발견한 것, 느낀 것, 연결된 아이디어를 자유롭게 메모하세요." oninput="saveDMMemo(2,this.value)"></textarea>
+      </div>
+    </div>
+  </div>
+  <div class="dm-panel" id="dm-panel-3">
+    <div class="dm-head">
+      <div class="dm-head-info">
+        <div class="dm-theme-badge theme-logistics">📦 메이퇀</div>
+        <div class="dm-title">#3 메이퇀 드론배달 | 인재공원 픽업 키오스크</div>
+      </div>
+      <button class="dm-close" onclick="closeDM()">💾 저장 후 닫기</button>
+    </div>
+    <div class="dm-body">
+      <div class="dm-section">
+        <div class="dm-section-label dm-label-obs"><div class="dm-label-icon obs">👁</div>Observation Mission — SEE 현장에서 볼 것</div>
+        <div class="dm-mission-item">
+          <label class="dm-mission-check"><input type="checkbox" id="dm-obs-chk-3" onchange="saveDMCheck(3,'obs',this.checked)"><span class="dm-check-box"></span></label>
+          <div class="dm-content dm-content-obs">인재공원 전용 픽업 스테이션(자판기 형태)에서 <strong>앱 주문→드론 비행→키오스크 착륙→픽업코드 수령까지 10~15분의 실제 상업 서비스</strong>를 관람하십시오. 옥상 이착륙장·바닥 QR 착륙존 구조와 인간-자동화 혼합 운영 방식을 확인하십시오.</div>
+        </div>
+      </div>
+      <div class="dm-section">
+        <div class="dm-section-label dm-label-ins"><div class="dm-label-icon ins">💡</div>Insight Mission — APPLY 우리 적용 관점</div>
+        <div class="dm-mission-item">
+          <label class="dm-mission-check"><input type="checkbox" id="dm-ins-chk-3" onchange="saveDMCheck(3,'ins',this.checked)"><span class="dm-check-box"></span></label>
+          <div class="dm-content dm-content-ins">완전 자동화가 아니어도 <strong>"부분 자동화 + 인력"이 실제 서비스로 작동하는 설계의 균형점을 어떻게 잡는가</strong>. 이 인프라가 한국에 깔리면 LG의 어떤 사업이 가장 먼저 위협받고, 어떤 사업이 기회를 얻는가를 본인의 직무 관점에서 각각 1개씩 정의하십시오.</div>
+        </div>
+      </div>
+      <div class="dm-memo-wrap">
+        <div class="dm-memo-label">📝 현장 메모</div>
+        <textarea class="dm-memo" id="dm-memo-3" placeholder="현장에서 발견한 것, 느낀 것, 연결된 아이디어를 자유롭게 메모하세요." oninput="saveDMMemo(3,this.value)"></textarea>
+      </div>
+    </div>
+  </div>
+  <div class="dm-panel" id="dm-panel-4">
+    <div class="dm-head">
+      <div class="dm-head-info">
+        <div class="dm-theme-badge theme-mobility">🚕 Pony.ai</div>
+        <div class="dm-title">#4 무인택시 (Pony.ai) | L4 완전무인 운행</div>
+      </div>
+      <button class="dm-close" onclick="closeDM()">💾 저장 후 닫기</button>
+    </div>
+    <div class="dm-body">
+      <div class="dm-section">
+        <div class="dm-section-label dm-label-obs"><div class="dm-label-icon obs">👁</div>Observation Mission — SEE 현장에서 볼 것</div>
+        <div class="dm-mission-item">
+          <label class="dm-mission-check"><input type="checkbox" id="dm-obs-chk-4" onchange="saveDMCheck(4,'obs',this.checked)"><span class="dm-check-box"></span></label>
+          <div class="dm-content dm-content-obs">앱으로 지정 정류장에서 호출하고, <strong>운전석에 사람이 없는 상태에서 화면에 자차·주변차 위치와 경로가 표시되는 것을 확인</strong>하십시오. 블루투스 잠금해제·음성 인터랙션·조수석 개방을 체험하고, 탑승 중 승차 편의성과 안전 체감을 구체적으로 기록하십시오.</div>
+        </div>
+      </div>
+      <div class="dm-section">
+        <div class="dm-section-label dm-label-ins"><div class="dm-label-icon ins">💡</div>Insight Mission — APPLY 우리 적용 관점</div>
+        <div class="dm-mission-item">
+          <label class="dm-mission-check"><input type="checkbox" id="dm-ins-chk-4" onchange="saveDMCheck(4,'ins',this.checked)"><span class="dm-check-box"></span></label>
+          <div class="dm-content dm-content-ins">무인 운행에 대한 신뢰를 <strong>무엇으로(센서·UX·운영 파트너) 확보하며, 사업의 단위경제는 어떻게 맞추는가</strong>. 차량 OEM과 IT 운영사(Pony.ai)의 분업 생태계가 LG전자의 차량 부품·B2B 사업에 던지는 질문은 무엇이며, 우리는 어느 쪽 포지션에 서야 합니까?</div>
+        </div>
+      </div>
+      <div class="dm-memo-wrap">
+        <div class="dm-memo-label">📝 현장 메모</div>
+        <textarea class="dm-memo" id="dm-memo-4" placeholder="현장에서 발견한 것, 느낀 것, 연결된 아이디어를 자유롭게 메모하세요." oninput="saveDMMemo(4,this.value)"></textarea>
+      </div>
+    </div>
+  </div>
+  <div class="dm-panel" id="dm-panel-5">
+    <div class="dm-head">
+      <div class="dm-head-info">
+        <div class="dm-theme-badge theme-mobility">⚡ NIO</div>
+        <div class="dm-title">#5 NIO House | 배터리 교체 + 간담회</div>
+      </div>
+      <button class="dm-close" onclick="closeDM()">💾 저장 후 닫기</button>
+    </div>
+    <div class="dm-body">
+      <div class="dm-section">
+        <div class="dm-section-label dm-label-obs"><div class="dm-label-icon obs">👁</div>Observation Mission — SEE 현장에서 볼 것</div>
+        <div class="dm-mission-item">
+          <label class="dm-mission-check"><input type="checkbox" id="dm-obs-chk-5" onchange="saveDMCheck(5,'obs',this.checked)"><span class="dm-check-box"></span></label>
+          <div class="dm-content dm-content-obs">1층 갤러리에서 실차를 보고, 안쪽 회원 공간에서 <strong>시그니처 카페·도서 대여·강연 포럼·키즈존을 직접 체험</strong>하십시오. 5D 차량 시승과 배터리 교체 시연(약 5분)을 관람하며 BaaS 구독 모델이 만든 설계·원가·AS의 트레이드오프를 확인하십시오.</div>
+        </div>
+      </div>
+      <div class="dm-section">
+        <div class="dm-section-label dm-label-ins"><div class="dm-label-icon ins">💡</div>Insight Mission — APPLY 우리 적용 관점</div>
+        <div class="dm-mission-item">
+          <label class="dm-mission-check"><input type="checkbox" id="dm-ins-chk-5" onchange="saveDMCheck(5,'ins',this.checked)"><span class="dm-check-box"></span></label>
+          <div class="dm-content dm-content-ins">제품 자체보다 <strong>"소유 이후의 경험과 커뮤니티"를 설계하는 접근이 우리 제품·브랜드 전략에 주는 시사점</strong>을 정리하십시오. "하드웨어 1회 판매 → 평생 구독"이라는 서비스화의 길이 우리 가전 사업에는 어떻게 적용 가능합니까?</div>
+        </div>
+      </div>
+      <div class="dm-memo-wrap">
+        <div class="dm-memo-label">📝 현장 메모</div>
+        <textarea class="dm-memo" id="dm-memo-5" placeholder="현장에서 발견한 것, 느낀 것, 연결된 아이디어를 자유롭게 메모하세요." oninput="saveDMMemo(5,this.value)"></textarea>
+      </div>
+    </div>
+  </div>
+  <div class="dm-panel" id="dm-panel-6">
+    <div class="dm-head">
+      <div class="dm-head-info">
+        <div class="dm-theme-badge theme-mobility">🏢 MIXC</div>
+        <div class="dm-title">#6 MIXC 몰 EV 매장 | 샤오미·화웨이·샤오펑</div>
+      </div>
+      <button class="dm-close" onclick="closeDM()">💾 저장 후 닫기</button>
+    </div>
+    <div class="dm-body">
+      <div class="dm-section">
+        <div class="dm-section-label dm-label-obs"><div class="dm-label-icon obs">👁</div>Observation Mission — SEE 현장에서 볼 것</div>
+        <div class="dm-mission-item">
+          <label class="dm-mission-check"><input type="checkbox" id="dm-obs-chk-6" onchange="saveDMCheck(6,'obs',this.checked)"><span class="dm-check-box"></span></label>
+          <div class="dm-content dm-content-obs">샤오미 대형 자동차 쇼룸 겸 플래그십과 <strong>차량·전자제품을 함께 진열한 화웨이 매장</strong>을 탐색하십시오. 완성차(전용 쇼룸 회귀)와 전자·생태계 브랜드(몰 잔류)의 전략 분화를 비교하고, 인테리어·HMI·외장 마감을 직접 관찰하십시오.</div>
+        </div>
+      </div>
+      <div class="dm-section">
+        <div class="dm-section-label dm-label-ins"><div class="dm-label-icon ins">💡</div>Insight Mission — APPLY 우리 적용 관점</div>
+        <div class="dm-mission-item">
+          <label class="dm-mission-check"><input type="checkbox" id="dm-ins-chk-6" onchange="saveDMCheck(6,'ins',this.checked)"><span class="dm-check-box"></span></label>
+          <div class="dm-content dm-content-ins">제품을 <strong>"어떤 공간에서, 어떤 맥락으로" 파는가가 브랜드 인식과 구매 결정에 미치는 영향</strong>을 정리하십시오. LG는 가전 제조사로 남을 것입니까, 에코락인을 거는 플랫폼 기업이 될 것입니까? 한국 동급 차량 대비 한 수 위인 점 1개와 아직 못한 점 1개를 의도적으로 모두 찾으십시오.</div>
+        </div>
+      </div>
+      <div class="dm-memo-wrap">
+        <div class="dm-memo-label">📝 현장 메모</div>
+        <textarea class="dm-memo" id="dm-memo-6" placeholder="현장에서 발견한 것, 느낀 것, 연결된 아이디어를 자유롭게 메모하세요." oninput="saveDMMemo(6,this.value)"></textarea>
+      </div>
+    </div>
+  </div>
+  <div class="dm-panel" id="dm-panel-7">
+    <div class="dm-head">
+      <div class="dm-head-info">
+        <div class="dm-theme-badge theme-logistics">🏪 징동전기</div>
+        <div class="dm-title">#7 징동전기 (JD MALL) | 로컬 가전매장</div>
+      </div>
+      <button class="dm-close" onclick="closeDM()">💾 저장 후 닫기</button>
+    </div>
+    <div class="dm-body">
+      <div class="dm-section">
+        <div class="dm-section-label dm-label-obs"><div class="dm-label-icon obs">👁</div>Observation Mission — SEE 현장에서 볼 것</div>
+        <div class="dm-mission-item">
+          <label class="dm-mission-check"><input type="checkbox" id="dm-obs-chk-7" onchange="saveDMCheck(7,'obs',this.checked)"><span class="dm-check-box"></span></label>
+          <div class="dm-content dm-content-obs">30개 체험존의 공간·동선 설계와 <strong>"기술·미래·생태" 테마 연출, 로봇팔 디스플레이</strong> 등을 현장에서 관찰하십시오. Hisense·TCL·Midea 동급 제품 가격을 사진으로 기록하고, 홈디자인·가전 패키지를 매장에서 일괄 처리하는 원스톱 솔루션도 확인하십시오.</div>
+        </div>
+      </div>
+      <div class="dm-section">
+        <div class="dm-section-label dm-label-ins"><div class="dm-label-icon ins">💡</div>Insight Mission — APPLY 우리 적용 관점</div>
+        <div class="dm-mission-item">
+          <label class="dm-mission-check"><input type="checkbox" id="dm-ins-chk-7" onchange="saveDMCheck(7,'ins',this.checked)"><span class="dm-check-box"></span></label>
+          <div class="dm-content dm-content-ins">체험형 매장이 진열 대비 <strong>구매 전환과 브랜드 인식에 주는 효과를, 무엇으로 측정하고 어떻게 운영하는가</strong>. 가격차가 가장 큰 제품과 가장 작은 제품은 무엇이며, 그 차이가 "품질 차이"로 정당화되는지 직접 눈으로 검증하십시오.</div>
+        </div>
+      </div>
+      <div class="dm-memo-wrap">
+        <div class="dm-memo-label">📝 현장 메모</div>
+        <textarea class="dm-memo" id="dm-memo-7" placeholder="현장에서 발견한 것, 느낀 것, 연결된 아이디어를 자유롭게 메모하세요." oninput="saveDMMemo(7,this.value)"></textarea>
+      </div>
+    </div>
+  </div>
+  <div class="dm-panel" id="dm-panel-8">
+    <div class="dm-head">
+      <div class="dm-head-info">
+        <div class="dm-theme-badge theme-ai">🤖 Xpeng</div>
+        <div class="dm-title">#8 Xpeng (샤오펑) | 전시관</div>
+      </div>
+      <button class="dm-close" onclick="closeDM()">💾 저장 후 닫기</button>
+    </div>
+    <div class="dm-body">
+      <div class="dm-section">
+        <div class="dm-section-label dm-label-obs"><div class="dm-label-icon obs">👁</div>Observation Mission — SEE 현장에서 볼 것</div>
+        <div class="dm-mission-item">
+          <label class="dm-mission-check"><input type="checkbox" id="dm-obs-chk-8" onchange="saveDMCheck(8,'obs',this.checked)"><span class="dm-check-box"></span></label>
+          <div class="dm-content dm-content-obs">전시관에서 <strong>VLA 2.0·Robotaxi·차세대 IRON 휴머노이드와 AeroHT 플라잉카</strong> 등 "피지컬 AI" 제품군을 관람하십시오(MIXC 매장과 달리 R&D·제조 관점 중심). AeroHT 분리형 기체의 결합·분리 방식, 비행체의 크기·무게·이착륙 방식·운용 시나리오를 구체적으로 메모하십시오.</div>
+        </div>
+      </div>
+      <div class="dm-section">
+        <div class="dm-section-label dm-label-ins"><div class="dm-label-icon ins">💡</div>Insight Mission — APPLY 우리 적용 관점</div>
+        <div class="dm-mission-item">
+          <label class="dm-mission-check"><input type="checkbox" id="dm-ins-chk-8" onchange="saveDMCheck(8,'ins',this.checked)"><span class="dm-check-box"></span></label>
+          <div class="dm-content dm-content-ins">완성차 업체가 칩·로봇·비행체로 사업을 확장할 때의 시너지와, <strong>한정된 자원의 배분 우선순위를 어떻게 정할 것인가</strong>. 10년 뒤 비행 자동차 시대에 LG가 정의하는 "집(Home)"의 구조와 가전 배치는 어떻게 바뀌어야 하는지, 사라질 사업 1개와 새로 생겨날 사업 1개를 정의해 보십시오.</div>
+        </div>
+      </div>
+      <div class="dm-memo-wrap">
+        <div class="dm-memo-label">📝 현장 메모</div>
+        <textarea class="dm-memo" id="dm-memo-8" placeholder="현장에서 발견한 것, 느낀 것, 연결된 아이디어를 자유롭게 메모하세요." oninput="saveDMMemo(8,this.value)"></textarea>
+      </div>
+    </div>
+  </div>
+  <div class="dm-panel" id="dm-panel-9">
+    <div class="dm-head">
+      <div class="dm-head-info">
+        <div class="dm-theme-badge theme-ai">🛸 Ehang</div>
+        <div class="dm-title">#9 Ehang (이항) | 자율비행체 전시관</div>
+      </div>
+      <button class="dm-close" onclick="closeDM()">💾 저장 후 닫기</button>
+    </div>
+    <div class="dm-body">
+      <div class="dm-section">
+        <div class="dm-section-label dm-label-obs"><div class="dm-label-icon obs">👁</div>Observation Mission — SEE 현장에서 볼 것</div>
+        <div class="dm-mission-item">
+          <label class="dm-mission-check"><input type="checkbox" id="dm-obs-chk-9" onchange="saveDMCheck(9,'obs',this.checked)"><span class="dm-check-box"></span></label>
+          <div class="dm-content dm-content-obs">선전 뤄후구 UAM 체험센터(자동 수직이착륙장·격납고 통합)에서 <strong>무인 EH216-S의 이착륙과 충전 운영</strong>을 관람하십시오. 인증을 갖춘 자율비행체가 실제 인프라에서 어떻게 운용되는지, 이착륙장 구조와 운영 방식을 구체적으로 기록하십시오.</div>
+        </div>
+      </div>
+      <div class="dm-section">
+        <div class="dm-section-label dm-label-ins"><div class="dm-label-icon ins">💡</div>Insight Mission — APPLY 우리 적용 관점</div>
+        <div class="dm-mission-item">
+          <label class="dm-mission-check"><input type="checkbox" id="dm-ins-chk-9" onchange="saveDMCheck(9,'ins',this.checked)"><span class="dm-check-box"></span></label>
+          <div class="dm-content dm-content-ins">신규 모빌리티 영역에서 <strong>"규제 인증 선점"이 만들어내는 경쟁우위의 지속성과 한계는 무엇인가</strong>. 인증→양산→상업운영으로 이어지는 단계적 사업화 로드맵이 LG의 미래 사업 기회(가전·서비스·공간)와 어떻게 연결될 수 있는지 시사점을 정리하십시오.</div>
+        </div>
+      </div>
+      <div class="dm-memo-wrap">
+        <div class="dm-memo-label">📝 현장 메모</div>
+        <textarea class="dm-memo" id="dm-memo-9" placeholder="현장에서 발견한 것, 느낀 것, 연결된 아이디어를 자유롭게 메모하세요." oninput="saveDMMemo(9,this.value)"></textarea>
+      </div>
+    </div>
+  </div>
+  <div class="dm-panel" id="dm-panel-10">
+    <div class="dm-head">
+      <div class="dm-head-info">
+        <div class="dm-theme-badge theme-logistics">⚙️ 화창베이</div>
+        <div class="dm-title">#10 화창베이 부품시장 (华强北)</div>
+      </div>
+      <button class="dm-close" onclick="closeDM()">💾 저장 후 닫기</button>
+    </div>
+    <div class="dm-body">
+      <div class="dm-section">
+        <div class="dm-section-label dm-label-obs"><div class="dm-label-icon obs">👁</div>Observation Mission — SEE 현장에서 볼 것</div>
+        <div class="dm-mission-item">
+          <label class="dm-mission-check"><input type="checkbox" id="dm-obs-chk-10" onchange="saveDMCheck(10,'obs',this.checked)"><span class="dm-check-box"></span></label>
+          <div class="dm-content dm-content-obs">본인 사업부에서 사용하는 <strong>부품 1개를 미리 정해 와서</strong>, 현장에서 통역과 동행하여 가격·납기·MOQ(최소주문수량)를 직접 질문하십시오. 동일 외관에 내부 칩셋이 다른 "버전 차이"가 흔하므로 사양 검증 질문도 함께 던지십시오.</div>
+        </div>
+      </div>
+      <div class="dm-section">
+        <div class="dm-section-label dm-label-ins"><div class="dm-label-icon ins">💡</div>Insight Mission — APPLY 우리 적용 관점</div>
+        <div class="dm-mission-item">
+          <label class="dm-mission-check"><input type="checkbox" id="dm-ins-chk-10" onchange="saveDMCheck(10,'ins',this.checked)"><span class="dm-check-box"></span></label>
+          <div class="dm-content dm-content-ins">화창베이의 진짜 가치는 "저가"가 아닌 <strong>"속도(시제품 반나절, 양산 1~2주)와 다양성"</strong>임을 염두에 두고, 우리가 "검증의 비용"을 감당할 자체 역량을 갖춰야 비로소 이 시장을 활용할 수 있다는 점을 확인하십시오. 그 자리에서 즉답하십시오 — "내 사업부의 부품 조달 전략을 바꿀 것인가, 유지할 것인가."</div>
+        </div>
+      </div>
+      <div class="dm-memo-wrap">
+        <div class="dm-memo-label">📝 현장 메모</div>
+        <textarea class="dm-memo" id="dm-memo-10" placeholder="현장에서 발견한 것, 느낀 것, 연결된 아이디어를 자유롭게 메모하세요." oninput="saveDMMemo(10,this.value)"></textarea>
+      </div>
+    </div>
+  </div>
+
+    </div><!-- /dm-box -->
+  </div><!-- /dmOverlay -->
+
   <!-- ── LGenie Talk 팝업 ── -->
 <div id="lgenieOverlay" onclick="closeLGeniePopup()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:9600;"></div>
 <div id="lgeniePopup" onclick="event.stopPropagation()" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(0.95);width:680px;max-width:96vw;max-height:92vh;overflow-y:auto;background:#fff;border-radius:16px;z-index:9601;box-shadow:0 32px 72px rgba(0,0,0,0.28);opacity:0;transition:all 0.22s cubic-bezier(0.34,1.3,0.64,1);">
@@ -3968,303 +4266,6 @@ document.addEventListener('keydown', function(e) {
   }
 </script>
 
-  <!-- ── 상세 미션 팝업 ── -->
-  <div class="dm-overlay" id="dmOverlay" onclick="closeDMBg(event)">
-    <div class="dm-box" id="dmBox">
-
-  <div class="dm-panel" id="dm-panel-1">
-    <div class="dm-head">
-      <div class="dm-head-info">
-        <div class="dm-theme-badge theme-mobility">🚗 BYD</div>
-        <div class="dm-title">#1 BYD | 전시관 + 차량시승</div>
-      </div>
-      <button class="dm-close" onclick="closeDM()">💾 저장 후 닫기</button>
-    </div>
-    <div class="dm-body">
-      <div class="dm-section">
-        <div class="dm-section-label dm-label-obs"><div class="dm-label-icon obs">👁</div>Observation Mission — SEE 현장에서 볼 것</div>
-        <div class="dm-mission-item">
-          <label class="dm-mission-check"><input type="checkbox" id="dm-obs-chk-1" onchange="saveDMCheck(1,'obs',this.checked)"><span class="dm-check-box"></span></label>
-          <div class="dm-content dm-content-obs">전시관 2개 층에서 30년 발전사와 핵심기술(블레이드 배터리·e플랫폼 3.0·DM 하이브리드·DiLink)을 안내받고, 부지를 누비는 자율주행 궤도차 Skyshuttle을 직접 탑승. <strong>"에너지 획득→저장→응용"이 한 부지에 구현된 모습</strong>을 확인하십시오. 30년 타임라인 中 결정적 turning point 3개를 메모하십시오.</div>
-        </div>
-      </div>
-      <div class="dm-section">
-        <div class="dm-section-label dm-label-ins"><div class="dm-label-icon ins">💡</div>Insight Mission — APPLY 우리 적용 관점</div>
-        <div class="dm-mission-item">
-          <label class="dm-mission-check"><input type="checkbox" id="dm-ins-chk-1" onchange="saveDMCheck(1,'ins',this.checked)"><span class="dm-check-box"></span></label>
-          <div class="dm-content dm-content-ins">수직계열화의 통제력·개발 속도 이점과 막대한 투자·재무 부담이라는 양면을, <strong>우리 사업 구조에 어디까지·어떤 영역부터 적용할 것인가</strong>. 지금의 BYD를 만든 핵심 요소를 한 단어로 정의하고, 우리가 같은 길을 못 간 이유를 솔직하게 자문해 보십시오.</div>
-        </div>
-      </div>
-      <div class="dm-memo-wrap">
-        <div class="dm-memo-label">📝 현장 메모</div>
-        <textarea class="dm-memo" id="dm-memo-1" placeholder="현장에서 발견한 것, 느낀 것, 연결된 아이디어를 자유롭게 메모하세요." oninput="saveDMMemo(1,this.value)"></textarea>
-      </div>
-    </div>
-  </div>
-  <div class="dm-panel" id="dm-panel-2">
-    <div class="dm-head">
-      <div class="dm-head-info">
-        <div class="dm-theme-badge theme-robot">🤖 UBTECH</div>
-        <div class="dm-title">#2 UBTECH Robotics | 로봇시연 + Q&A</div>
-      </div>
-      <button class="dm-close" onclick="closeDM()">💾 저장 후 닫기</button>
-    </div>
-    <div class="dm-body">
-      <div class="dm-section">
-        <div class="dm-section-label dm-label-obs"><div class="dm-label-icon obs">👁</div>Observation Mission — SEE 현장에서 볼 것</div>
-        <div class="dm-mission-item">
-          <label class="dm-mission-check"><input type="checkbox" id="dm-obs-chk-2" onchange="saveDMCheck(2,'obs',this.checked)"><span class="dm-check-box"></span></label>
-          <div class="dm-content dm-content-obs">로봇이 충전 스테이션으로 걸어가 가슴의 배터리를 스스로 교체하는 전 과정을 직접 시연 관람하십시오. <strong>키 1.76m·52자유도·15kg 적재</strong>로 사람용 작업환경(문·작업대·컨베이어)에서 작동하는 방식을 구체적으로 기록하십시오.</div>
-        </div>
-      </div>
-      <div class="dm-section">
-        <div class="dm-section-label dm-label-ins"><div class="dm-label-icon ins">💡</div>Insight Mission — APPLY 우리 적용 관점</div>
-        <div class="dm-mission-item">
-          <label class="dm-mission-check"><input type="checkbox" id="dm-ins-chk-2" onchange="saveDMCheck(2,'ins',this.checked)"><span class="dm-check-box"></span></label>
-          <div class="dm-content dm-content-ins">Q&A에서 직접 질문하십시오 — <strong>우리 라인의 어느 공정(유연성이 필요하고 고정 자동화가 어려운 곳)에 먼저 적용 가능한가. 도입 ROI를 어떻게 판단할 것인가.</strong> BYD·폭스콘 등 실제 생산라인 투입 사례에서 우리 제조 현장에 주는 시사점을 정리하십시오.</div>
-        </div>
-      </div>
-      <div class="dm-memo-wrap">
-        <div class="dm-memo-label">📝 현장 메모</div>
-        <textarea class="dm-memo" id="dm-memo-2" placeholder="현장에서 발견한 것, 느낀 것, 연결된 아이디어를 자유롭게 메모하세요." oninput="saveDMMemo(2,this.value)"></textarea>
-      </div>
-    </div>
-  </div>
-  <div class="dm-panel" id="dm-panel-3">
-    <div class="dm-head">
-      <div class="dm-head-info">
-        <div class="dm-theme-badge theme-logistics">📦 메이퇀</div>
-        <div class="dm-title">#3 메이퇀 드론배달 | 인재공원 픽업 키오스크</div>
-      </div>
-      <button class="dm-close" onclick="closeDM()">💾 저장 후 닫기</button>
-    </div>
-    <div class="dm-body">
-      <div class="dm-section">
-        <div class="dm-section-label dm-label-obs"><div class="dm-label-icon obs">👁</div>Observation Mission — SEE 현장에서 볼 것</div>
-        <div class="dm-mission-item">
-          <label class="dm-mission-check"><input type="checkbox" id="dm-obs-chk-3" onchange="saveDMCheck(3,'obs',this.checked)"><span class="dm-check-box"></span></label>
-          <div class="dm-content dm-content-obs">인재공원 전용 픽업 스테이션(자판기 형태)에서 <strong>앱 주문→드론 비행→키오스크 착륙→픽업코드 수령까지 10~15분의 실제 상업 서비스</strong>를 관람하십시오. 옥상 이착륙장·바닥 QR 착륙존 구조와 인간-자동화 혼합 운영 방식을 확인하십시오.</div>
-        </div>
-      </div>
-      <div class="dm-section">
-        <div class="dm-section-label dm-label-ins"><div class="dm-label-icon ins">💡</div>Insight Mission — APPLY 우리 적용 관점</div>
-        <div class="dm-mission-item">
-          <label class="dm-mission-check"><input type="checkbox" id="dm-ins-chk-3" onchange="saveDMCheck(3,'ins',this.checked)"><span class="dm-check-box"></span></label>
-          <div class="dm-content dm-content-ins">완전 자동화가 아니어도 <strong>"부분 자동화 + 인력"이 실제 서비스로 작동하는 설계의 균형점을 어떻게 잡는가</strong>. 이 인프라가 한국에 깔리면 LG의 어떤 사업이 가장 먼저 위협받고, 어떤 사업이 기회를 얻는가를 본인의 직무 관점에서 각각 1개씩 정의하십시오.</div>
-        </div>
-      </div>
-      <div class="dm-memo-wrap">
-        <div class="dm-memo-label">📝 현장 메모</div>
-        <textarea class="dm-memo" id="dm-memo-3" placeholder="현장에서 발견한 것, 느낀 것, 연결된 아이디어를 자유롭게 메모하세요." oninput="saveDMMemo(3,this.value)"></textarea>
-      </div>
-    </div>
-  </div>
-  <div class="dm-panel" id="dm-panel-4">
-    <div class="dm-head">
-      <div class="dm-head-info">
-        <div class="dm-theme-badge theme-mobility">🚕 Pony.ai</div>
-        <div class="dm-title">#4 무인택시 (Pony.ai) | L4 완전무인 운행</div>
-      </div>
-      <button class="dm-close" onclick="closeDM()">💾 저장 후 닫기</button>
-    </div>
-    <div class="dm-body">
-      <div class="dm-section">
-        <div class="dm-section-label dm-label-obs"><div class="dm-label-icon obs">👁</div>Observation Mission — SEE 현장에서 볼 것</div>
-        <div class="dm-mission-item">
-          <label class="dm-mission-check"><input type="checkbox" id="dm-obs-chk-4" onchange="saveDMCheck(4,'obs',this.checked)"><span class="dm-check-box"></span></label>
-          <div class="dm-content dm-content-obs">앱으로 지정 정류장에서 호출하고, <strong>운전석에 사람이 없는 상태에서 화면에 자차·주변차 위치와 경로가 표시되는 것을 확인</strong>하십시오. 블루투스 잠금해제·음성 인터랙션·조수석 개방을 체험하고, 탑승 중 승차 편의성과 안전 체감을 구체적으로 기록하십시오.</div>
-        </div>
-      </div>
-      <div class="dm-section">
-        <div class="dm-section-label dm-label-ins"><div class="dm-label-icon ins">💡</div>Insight Mission — APPLY 우리 적용 관점</div>
-        <div class="dm-mission-item">
-          <label class="dm-mission-check"><input type="checkbox" id="dm-ins-chk-4" onchange="saveDMCheck(4,'ins',this.checked)"><span class="dm-check-box"></span></label>
-          <div class="dm-content dm-content-ins">무인 운행에 대한 신뢰를 <strong>무엇으로(센서·UX·운영 파트너) 확보하며, 사업의 단위경제는 어떻게 맞추는가</strong>. 차량 OEM과 IT 운영사(Pony.ai)의 분업 생태계가 LG전자의 차량 부품·B2B 사업에 던지는 질문은 무엇이며, 우리는 어느 쪽 포지션에 서야 합니까?</div>
-        </div>
-      </div>
-      <div class="dm-memo-wrap">
-        <div class="dm-memo-label">📝 현장 메모</div>
-        <textarea class="dm-memo" id="dm-memo-4" placeholder="현장에서 발견한 것, 느낀 것, 연결된 아이디어를 자유롭게 메모하세요." oninput="saveDMMemo(4,this.value)"></textarea>
-      </div>
-    </div>
-  </div>
-  <div class="dm-panel" id="dm-panel-5">
-    <div class="dm-head">
-      <div class="dm-head-info">
-        <div class="dm-theme-badge theme-mobility">⚡ NIO</div>
-        <div class="dm-title">#5 NIO House | 배터리 교체 + 간담회</div>
-      </div>
-      <button class="dm-close" onclick="closeDM()">💾 저장 후 닫기</button>
-    </div>
-    <div class="dm-body">
-      <div class="dm-section">
-        <div class="dm-section-label dm-label-obs"><div class="dm-label-icon obs">👁</div>Observation Mission — SEE 현장에서 볼 것</div>
-        <div class="dm-mission-item">
-          <label class="dm-mission-check"><input type="checkbox" id="dm-obs-chk-5" onchange="saveDMCheck(5,'obs',this.checked)"><span class="dm-check-box"></span></label>
-          <div class="dm-content dm-content-obs">1층 갤러리에서 실차를 보고, 안쪽 회원 공간에서 <strong>시그니처 카페·도서 대여·강연 포럼·키즈존을 직접 체험</strong>하십시오. 5D 차량 시승과 배터리 교체 시연(약 5분)을 관람하며 BaaS 구독 모델이 만든 설계·원가·AS의 트레이드오프를 확인하십시오.</div>
-        </div>
-      </div>
-      <div class="dm-section">
-        <div class="dm-section-label dm-label-ins"><div class="dm-label-icon ins">💡</div>Insight Mission — APPLY 우리 적용 관점</div>
-        <div class="dm-mission-item">
-          <label class="dm-mission-check"><input type="checkbox" id="dm-ins-chk-5" onchange="saveDMCheck(5,'ins',this.checked)"><span class="dm-check-box"></span></label>
-          <div class="dm-content dm-content-ins">제품 자체보다 <strong>"소유 이후의 경험과 커뮤니티"를 설계하는 접근이 우리 제품·브랜드 전략에 주는 시사점</strong>을 정리하십시오. "하드웨어 1회 판매 → 평생 구독"이라는 서비스화의 길이 우리 가전 사업에는 어떻게 적용 가능합니까?</div>
-        </div>
-      </div>
-      <div class="dm-memo-wrap">
-        <div class="dm-memo-label">📝 현장 메모</div>
-        <textarea class="dm-memo" id="dm-memo-5" placeholder="현장에서 발견한 것, 느낀 것, 연결된 아이디어를 자유롭게 메모하세요." oninput="saveDMMemo(5,this.value)"></textarea>
-      </div>
-    </div>
-  </div>
-  <div class="dm-panel" id="dm-panel-6">
-    <div class="dm-head">
-      <div class="dm-head-info">
-        <div class="dm-theme-badge theme-mobility">🏢 MIXC</div>
-        <div class="dm-title">#6 MIXC 몰 EV 매장 | 샤오미·화웨이·샤오펑</div>
-      </div>
-      <button class="dm-close" onclick="closeDM()">💾 저장 후 닫기</button>
-    </div>
-    <div class="dm-body">
-      <div class="dm-section">
-        <div class="dm-section-label dm-label-obs"><div class="dm-label-icon obs">👁</div>Observation Mission — SEE 현장에서 볼 것</div>
-        <div class="dm-mission-item">
-          <label class="dm-mission-check"><input type="checkbox" id="dm-obs-chk-6" onchange="saveDMCheck(6,'obs',this.checked)"><span class="dm-check-box"></span></label>
-          <div class="dm-content dm-content-obs">샤오미 대형 자동차 쇼룸 겸 플래그십과 <strong>차량·전자제품을 함께 진열한 화웨이 매장</strong>을 탐색하십시오. 완성차(전용 쇼룸 회귀)와 전자·생태계 브랜드(몰 잔류)의 전략 분화를 비교하고, 인테리어·HMI·외장 마감을 직접 관찰하십시오.</div>
-        </div>
-      </div>
-      <div class="dm-section">
-        <div class="dm-section-label dm-label-ins"><div class="dm-label-icon ins">💡</div>Insight Mission — APPLY 우리 적용 관점</div>
-        <div class="dm-mission-item">
-          <label class="dm-mission-check"><input type="checkbox" id="dm-ins-chk-6" onchange="saveDMCheck(6,'ins',this.checked)"><span class="dm-check-box"></span></label>
-          <div class="dm-content dm-content-ins">제품을 <strong>"어떤 공간에서, 어떤 맥락으로" 파는가가 브랜드 인식과 구매 결정에 미치는 영향</strong>을 정리하십시오. LG는 가전 제조사로 남을 것입니까, 에코락인을 거는 플랫폼 기업이 될 것입니까? 한국 동급 차량 대비 한 수 위인 점 1개와 아직 못한 점 1개를 의도적으로 모두 찾으십시오.</div>
-        </div>
-      </div>
-      <div class="dm-memo-wrap">
-        <div class="dm-memo-label">📝 현장 메모</div>
-        <textarea class="dm-memo" id="dm-memo-6" placeholder="현장에서 발견한 것, 느낀 것, 연결된 아이디어를 자유롭게 메모하세요." oninput="saveDMMemo(6,this.value)"></textarea>
-      </div>
-    </div>
-  </div>
-  <div class="dm-panel" id="dm-panel-7">
-    <div class="dm-head">
-      <div class="dm-head-info">
-        <div class="dm-theme-badge theme-logistics">🏪 징동전기</div>
-        <div class="dm-title">#7 징동전기 (JD MALL) | 로컬 가전매장</div>
-      </div>
-      <button class="dm-close" onclick="closeDM()">💾 저장 후 닫기</button>
-    </div>
-    <div class="dm-body">
-      <div class="dm-section">
-        <div class="dm-section-label dm-label-obs"><div class="dm-label-icon obs">👁</div>Observation Mission — SEE 현장에서 볼 것</div>
-        <div class="dm-mission-item">
-          <label class="dm-mission-check"><input type="checkbox" id="dm-obs-chk-7" onchange="saveDMCheck(7,'obs',this.checked)"><span class="dm-check-box"></span></label>
-          <div class="dm-content dm-content-obs">30개 체험존의 공간·동선 설계와 <strong>"기술·미래·생태" 테마 연출, 로봇팔 디스플레이</strong> 등을 현장에서 관찰하십시오. Hisense·TCL·Midea 동급 제품 가격을 사진으로 기록하고, 홈디자인·가전 패키지를 매장에서 일괄 처리하는 원스톱 솔루션도 확인하십시오.</div>
-        </div>
-      </div>
-      <div class="dm-section">
-        <div class="dm-section-label dm-label-ins"><div class="dm-label-icon ins">💡</div>Insight Mission — APPLY 우리 적용 관점</div>
-        <div class="dm-mission-item">
-          <label class="dm-mission-check"><input type="checkbox" id="dm-ins-chk-7" onchange="saveDMCheck(7,'ins',this.checked)"><span class="dm-check-box"></span></label>
-          <div class="dm-content dm-content-ins">체험형 매장이 진열 대비 <strong>구매 전환과 브랜드 인식에 주는 효과를, 무엇으로 측정하고 어떻게 운영하는가</strong>. 가격차가 가장 큰 제품과 가장 작은 제품은 무엇이며, 그 차이가 "품질 차이"로 정당화되는지 직접 눈으로 검증하십시오.</div>
-        </div>
-      </div>
-      <div class="dm-memo-wrap">
-        <div class="dm-memo-label">📝 현장 메모</div>
-        <textarea class="dm-memo" id="dm-memo-7" placeholder="현장에서 발견한 것, 느낀 것, 연결된 아이디어를 자유롭게 메모하세요." oninput="saveDMMemo(7,this.value)"></textarea>
-      </div>
-    </div>
-  </div>
-  <div class="dm-panel" id="dm-panel-8">
-    <div class="dm-head">
-      <div class="dm-head-info">
-        <div class="dm-theme-badge theme-ai">🤖 Xpeng</div>
-        <div class="dm-title">#8 Xpeng (샤오펑) | 전시관</div>
-      </div>
-      <button class="dm-close" onclick="closeDM()">💾 저장 후 닫기</button>
-    </div>
-    <div class="dm-body">
-      <div class="dm-section">
-        <div class="dm-section-label dm-label-obs"><div class="dm-label-icon obs">👁</div>Observation Mission — SEE 현장에서 볼 것</div>
-        <div class="dm-mission-item">
-          <label class="dm-mission-check"><input type="checkbox" id="dm-obs-chk-8" onchange="saveDMCheck(8,'obs',this.checked)"><span class="dm-check-box"></span></label>
-          <div class="dm-content dm-content-obs">전시관에서 <strong>VLA 2.0·Robotaxi·차세대 IRON 휴머노이드와 AeroHT 플라잉카</strong> 등 "피지컬 AI" 제품군을 관람하십시오(MIXC 매장과 달리 R&D·제조 관점 중심). AeroHT 분리형 기체의 결합·분리 방식, 비행체의 크기·무게·이착륙 방식·운용 시나리오를 구체적으로 메모하십시오.</div>
-        </div>
-      </div>
-      <div class="dm-section">
-        <div class="dm-section-label dm-label-ins"><div class="dm-label-icon ins">💡</div>Insight Mission — APPLY 우리 적용 관점</div>
-        <div class="dm-mission-item">
-          <label class="dm-mission-check"><input type="checkbox" id="dm-ins-chk-8" onchange="saveDMCheck(8,'ins',this.checked)"><span class="dm-check-box"></span></label>
-          <div class="dm-content dm-content-ins">완성차 업체가 칩·로봇·비행체로 사업을 확장할 때의 시너지와, <strong>한정된 자원의 배분 우선순위를 어떻게 정할 것인가</strong>. 10년 뒤 비행 자동차 시대에 LG가 정의하는 "집(Home)"의 구조와 가전 배치는 어떻게 바뀌어야 하는지, 사라질 사업 1개와 새로 생겨날 사업 1개를 정의해 보십시오.</div>
-        </div>
-      </div>
-      <div class="dm-memo-wrap">
-        <div class="dm-memo-label">📝 현장 메모</div>
-        <textarea class="dm-memo" id="dm-memo-8" placeholder="현장에서 발견한 것, 느낀 것, 연결된 아이디어를 자유롭게 메모하세요." oninput="saveDMMemo(8,this.value)"></textarea>
-      </div>
-    </div>
-  </div>
-  <div class="dm-panel" id="dm-panel-9">
-    <div class="dm-head">
-      <div class="dm-head-info">
-        <div class="dm-theme-badge theme-ai">🛸 Ehang</div>
-        <div class="dm-title">#9 Ehang (이항) | 자율비행체 전시관</div>
-      </div>
-      <button class="dm-close" onclick="closeDM()">💾 저장 후 닫기</button>
-    </div>
-    <div class="dm-body">
-      <div class="dm-section">
-        <div class="dm-section-label dm-label-obs"><div class="dm-label-icon obs">👁</div>Observation Mission — SEE 현장에서 볼 것</div>
-        <div class="dm-mission-item">
-          <label class="dm-mission-check"><input type="checkbox" id="dm-obs-chk-9" onchange="saveDMCheck(9,'obs',this.checked)"><span class="dm-check-box"></span></label>
-          <div class="dm-content dm-content-obs">선전 뤄후구 UAM 체험센터(자동 수직이착륙장·격납고 통합)에서 <strong>무인 EH216-S의 이착륙과 충전 운영</strong>을 관람하십시오. 인증을 갖춘 자율비행체가 실제 인프라에서 어떻게 운용되는지, 이착륙장 구조와 운영 방식을 구체적으로 기록하십시오.</div>
-        </div>
-      </div>
-      <div class="dm-section">
-        <div class="dm-section-label dm-label-ins"><div class="dm-label-icon ins">💡</div>Insight Mission — APPLY 우리 적용 관점</div>
-        <div class="dm-mission-item">
-          <label class="dm-mission-check"><input type="checkbox" id="dm-ins-chk-9" onchange="saveDMCheck(9,'ins',this.checked)"><span class="dm-check-box"></span></label>
-          <div class="dm-content dm-content-ins">신규 모빌리티 영역에서 <strong>"규제 인증 선점"이 만들어내는 경쟁우위의 지속성과 한계는 무엇인가</strong>. 인증→양산→상업운영으로 이어지는 단계적 사업화 로드맵이 LG의 미래 사업 기회(가전·서비스·공간)와 어떻게 연결될 수 있는지 시사점을 정리하십시오.</div>
-        </div>
-      </div>
-      <div class="dm-memo-wrap">
-        <div class="dm-memo-label">📝 현장 메모</div>
-        <textarea class="dm-memo" id="dm-memo-9" placeholder="현장에서 발견한 것, 느낀 것, 연결된 아이디어를 자유롭게 메모하세요." oninput="saveDMMemo(9,this.value)"></textarea>
-      </div>
-    </div>
-  </div>
-  <div class="dm-panel" id="dm-panel-10">
-    <div class="dm-head">
-      <div class="dm-head-info">
-        <div class="dm-theme-badge theme-logistics">⚙️ 화창베이</div>
-        <div class="dm-title">#10 화창베이 부품시장 (华强北)</div>
-      </div>
-      <button class="dm-close" onclick="closeDM()">💾 저장 후 닫기</button>
-    </div>
-    <div class="dm-body">
-      <div class="dm-section">
-        <div class="dm-section-label dm-label-obs"><div class="dm-label-icon obs">👁</div>Observation Mission — SEE 현장에서 볼 것</div>
-        <div class="dm-mission-item">
-          <label class="dm-mission-check"><input type="checkbox" id="dm-obs-chk-10" onchange="saveDMCheck(10,'obs',this.checked)"><span class="dm-check-box"></span></label>
-          <div class="dm-content dm-content-obs">본인 사업부에서 사용하는 <strong>부품 1개를 미리 정해 와서</strong>, 현장에서 통역과 동행하여 가격·납기·MOQ(최소주문수량)를 직접 질문하십시오. 동일 외관에 내부 칩셋이 다른 "버전 차이"가 흔하므로 사양 검증 질문도 함께 던지십시오.</div>
-        </div>
-      </div>
-      <div class="dm-section">
-        <div class="dm-section-label dm-label-ins"><div class="dm-label-icon ins">💡</div>Insight Mission — APPLY 우리 적용 관점</div>
-        <div class="dm-mission-item">
-          <label class="dm-mission-check"><input type="checkbox" id="dm-ins-chk-10" onchange="saveDMCheck(10,'ins',this.checked)"><span class="dm-check-box"></span></label>
-          <div class="dm-content dm-content-ins">화창베이의 진짜 가치는 "저가"가 아닌 <strong>"속도(시제품 반나절, 양산 1~2주)와 다양성"</strong>임을 염두에 두고, 우리가 "검증의 비용"을 감당할 자체 역량을 갖춰야 비로소 이 시장을 활용할 수 있다는 점을 확인하십시오. 그 자리에서 즉답하십시오 — "내 사업부의 부품 조달 전략을 바꿀 것인가, 유지할 것인가."</div>
-        </div>
-      </div>
-      <div class="dm-memo-wrap">
-        <div class="dm-memo-label">📝 현장 메모</div>
-        <textarea class="dm-memo" id="dm-memo-10" placeholder="현장에서 발견한 것, 느낀 것, 연결된 아이디어를 자유롭게 메모하세요." oninput="saveDMMemo(10,this.value)"></textarea>
-      </div>
-    </div>
-  </div>
-
-    </div><!-- /dm-box -->
-  </div><!-- /dmOverlay -->
 
 <script>
   window.openDM = function(num) {
