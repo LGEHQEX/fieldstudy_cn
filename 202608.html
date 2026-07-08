@@ -4187,7 +4187,7 @@ document.addEventListener('keydown', function(e) {
 
 <!-- ── Survey 드로어 ── -->
 <div id="surveyDrawer" style="display:none;position:fixed;inset:0;z-index:9500;background:rgba(0,0,0,0.5);" onclick="closeSurveyDrawer()">
-  <div onclick="event.stopPropagation()" style="position:absolute;right:0;top:0;bottom:0;width:100%;max-width:640px;background:#fff;overflow-y:auto;display:flex;flex-direction:column;">
+  <div onclick="event.stopPropagation()" style="position:absolute;right:0;top:0;bottom:0;width:50%;min-width:320px;background:#fff;overflow-y:auto;display:flex;flex-direction:column;">
     <div style="padding:16px 20px;border-bottom:1px solid #e5e7eb;display:flex;align-items:center;justify-content:space-between;">
       <span style="font-size:16px;font-weight:700;">📝 사전 Needs Survey</span>
       <button onclick="closeSurveyDrawer()" style="background:none;border:none;font-size:20px;cursor:pointer;color:#6b7280;">✕</button>
@@ -4312,7 +4312,7 @@ document.addEventListener('keydown', function(e) {
 
 <!-- ── 입국신고서 작성 가이드 슬라이드 드로어 ── -->
 <div id="niaGuideOverlay" style="display:none;position:fixed;inset:0;z-index:9700;background:rgba(0,0,0,0.5);opacity:0;transition:opacity 0.25s ease;" onclick="closeNiaGuide()">
-  <div id="niaGuidePanel" onclick="event.stopPropagation()" style="position:absolute;right:0;top:0;bottom:0;width:100%;max-width:640px;background:#fff;display:flex;flex-direction:column;overflow:hidden;box-shadow:-8px 0 32px rgba(0,0,0,0.25);transform:translateX(100%);transition:transform 0.28s ease;">
+  <div id="niaGuidePanel" onclick="event.stopPropagation()" style="position:absolute;right:0;top:0;bottom:0;width:50%;min-width:320px;background:#fff;display:flex;flex-direction:column;overflow:hidden;box-shadow:-8px 0 32px rgba(0,0,0,0.25);transform:translateX(100%);transition:transform 0.28s ease;">
     <div style="padding:16px 20px;border-bottom:1px solid #e5e7eb;display:flex;align-items:center;justify-content:space-between;">
       <span id="niaGuideTitle" style="font-size:15px;font-weight:700;"></span>
       <button onclick="closeNiaGuide()" style="background:none;border:none;font-size:20px;cursor:pointer;color:#6b7280;">✕</button>
